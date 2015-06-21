@@ -4,7 +4,7 @@ A minimalistic template-based module to manage /etc/hosts. The main
 goal for this module is to add entries for localhost and primary
 address based on facts.
 
-This module uncontidionally overwrites your hosts file. You have been
+This module unconditionally overwrites your hosts file. You have been
 warned! There are two reasons that this is template-based.
 
 1) Currently the default host type don't allow multiple IP for a
