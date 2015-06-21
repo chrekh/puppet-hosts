@@ -1,0 +1,30 @@
+# Managed by puppet module hosts.
+
+<%
+# Calculate the amount of tabs needed for alignment
+def tabs(len)
+  count = ( 31 - len ) / 8
+  return " " if count < 1
+  return "\t" * count
+end
+-%>
+# Localhost
+<% @lo_ipv4.each do |ip| -%>
+<%= ip %><%= tabs(ip.length) %><%= @lo_names.join(' ') %>
+<% end -%>
+<% @lo_ipv6.each do |ip| -%>
+<%= ip %><%= tabs(ip.length) %><%= @lo_names.join(' ') %>
+<% end -%>
+
+# Primary address
+<% @primary_ipv4.each do |ip| -%>
+<%= ip %><%= tabs(ip.length) %><%= @primary_names.join(' ') %>
+<% end -%>
+<% @primary_ipv6.each do |ip| -%>
+<%= ip %><%= tabs(ip.length) %><%= @primary_names.join(' ') %>
+<% end -%>
+
+# Additional entries (use hosts::entries to add)
+<% @entries.each_pair do |ip, names| -%>
+<%= ip %><%= tabs(ip.length) %><%= names.join(' ') %>
+<% end -%>
