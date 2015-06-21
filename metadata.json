@@ -8,10 +8,9 @@
   "project_page": "https://github.com/chrekh/puppet-hosts",
   "issues_url": "https://github.com/chrekh/puppet-hosts/issues",
   "operatingsystem_support": [
-    {"operatingsystem": "Gentoo"},
-  ]
+    {"operatingsystem": "Gentoo"}
+  ],
   "dependencies": [
-    {"name":"puppet","version_requirement":">= 2.7"}
   ]
 }
 
