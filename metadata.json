@@ -6,7 +6,7 @@
   "license": "Apache-2.0",
   "source": "git://github.com/chrekh/puppet-hosts",
   "project_page": "https://github.com/chrekh/puppet-hosts",
-  "issues_url": "https://github.com/chrekh/puppet-hosts",
+  "issues_url": "https://github.com/chrekh/puppet-hosts/issues",
   "operatingsystem_support": [
     {"operatingsystem": "Gentoo"},
   ]
