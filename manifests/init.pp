@@ -12,6 +12,14 @@ class hosts (
   $primary_names = [ $::fqdn, $::hostname ],
   $entries       = {},
 ) {
+  validate_string($file)
+  validate_array($lo_ipv4)
+  validate_array($lo_ipv6)
+  validate_array($lo_names)
+  validate_array($primary_ipv4)
+  validate_array($primary_ipv6)
+  validate_array($primary_names)
+  validate_hash($entries)
   file { $file:
     ensure  => present,
     content => template('hosts/hosts.erb'),
