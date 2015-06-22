@@ -7,10 +7,15 @@
   "source": "git://github.com/chrekh/puppet-hosts",
   "project_page": "https://github.com/chrekh/puppet-hosts",
   "issues_url": "https://github.com/chrekh/puppet-hosts/issues",
+  "requirements": [
+    {"name": "pe","version_requirement": ">= 3.2.0"},
+    {"name": "puppet","version_requirement": ">= 3.0.0"}
+  ],
   "operatingsystem_support": [
-    {"operatingsystem": "Gentoo"}
+    {"operatingsystem": "Gentoo"},
+    {"operatingsystem": "RedHat"},
+    {"operatingsystem": "SLES"}
   ],
   "dependencies": [
   ]
 }
-
