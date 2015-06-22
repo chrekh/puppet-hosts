@@ -17,5 +17,8 @@
     {"operatingsystem": "SLES"}
   ],
   "dependencies": [
+  ],
+  "tags": [
+    "hosts"
   ]
 }
