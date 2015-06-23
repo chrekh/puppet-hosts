@@ -22,6 +22,9 @@ class hosts (
   validate_hash($entries)
   file { $file:
     ensure  => present,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
     content => template('hosts/hosts.erb'),
   }
 }
