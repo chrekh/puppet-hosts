@@ -74,7 +74,7 @@ class { 'hosts':
 hosts::entries:
   '::2':
     - 'localhost2'
-  '2001::db8:abba::1':
+  '2001:db8:abba::1':
     - 'foo.bar.org'
     - 'foo'
 ```
