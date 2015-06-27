@@ -1,6 +1,6 @@
 {
   "name": "chrekh-hosts",
-  "version": "0.1.3",
+  "version": "1.0.0",
   "author": "chrekh",
   "summary": "A minimalistic template-based module to manage /etc/hosts",
   "license": "Apache-2.0",
@@ -14,7 +14,12 @@
   "operatingsystem_support": [
     {"operatingsystem": "Gentoo"},
     {"operatingsystem": "RedHat"},
-    {"operatingsystem": "SLES"}
+    {"operatingsystem": "Debian"},
+    {"operatingsystem": "Ubuntu"},
+    {"operatingsystem": "CentOS"},
+    {"operatingsystem": "Solaris"},
+    {"operatingsystem": "SLES"},
+    {"operatingsystem": "SLED"}
   ],
   "dependencies": [
   ],
