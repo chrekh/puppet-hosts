@@ -17,10 +17,10 @@ end
 <% end -%>
 
 # Primary address
-<% @primary_ipv4.reject{|elt| elt.to_s == 'undef' || elt.to_s == '' }.each do |ip| -%>
+<% @pri_ipv4.reject{|elt| elt.to_s == 'undef' || elt.to_s == '' }.each do |ip| -%>
 <%= ip %><%= tabs(ip.length) %><%= @primary_names.join(' ') %>
 <% end -%>
-<% @primary_ipv6.reject{|elt| elt.to_s == 'undef' || elt.to_s == '' }.each do |ip| -%>
+<% @pri_ipv6.reject{|elt| elt.to_s == 'undef' || elt.to_s == '' }.each do |ip| -%>
 <%= ip %><%= tabs(ip.length) %><%= @primary_names.join(' ') %>
 <% end -%>
 
