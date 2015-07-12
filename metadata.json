@@ -9,7 +9,7 @@
   "issues_url": "https://github.com/chrekh/puppet-hosts/issues",
   "requirements": [
     {"name": "pe","version_requirement": ">= 3.2.0"},
-    {"name": "puppet","version_requirement": ">= 3.0.0"}
+    {"name": "puppet","version_requirement": ">= 3.0.0"},
     {"name": "ruby","version_requirement": ">= 2.1" }
   ],
   "operatingsystem_support": [
