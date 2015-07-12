@@ -7,9 +7,3 @@ on an interface instead of just one.
 
 The default is still to use just one address, but that is easy
 configured with parameters one_primary_ipv4 and one_primary_ipv6
-
-###Limitations
-
-I rely on the precence of method Socket.getifaddrs which means that I
-require ruby-2.1 or newer.
-	
