@@ -1,9 +1,9 @@
 # hosts
 
-A minimalistic template-based module to manage /etc/hosts. The main
-goal for this module is to add entries for localhost and primary
-address based on facts. Tested by me on Gentoo, SLES, and RedHat. But
-it should work or any Linux and Unix-like OS.
+A template-based module to manage /etc/hosts. The main goal for this
+module is to add entries for localhost and primary address based on
+existing ip-adresses on existing interfaces. Tested by me on Gentoo,
+SLES, and RedHat. But it should work or any Linux and Unix-like OS.
 
 This module unconditionally overwrites your hosts file. You have been
 warned! There are two reasons that this is template-based.
@@ -29,7 +29,7 @@ The file to add host entries to.
 lo_ipv4
 -------
 List of IPv4 addresses for localhost. Empty list means no entry.
-- *Default*: [ $::ipaddress_lo ]
+- *Default*: [ '127.0.0.1' ]
 
 lo_ipv6
 -------
@@ -44,17 +44,27 @@ List of names for localhost.
 primary_ipv4
 ------------
 List of IPv4 addresses. Empty list means no entry.
-- *Default*: [ $::ipaddress ]
+- *Default*: [ all IPv4 addresses ]
 
 primary_ipv6
 ------------
 List of IPv6 addresses. Empty list means no entry.
-- *Default*: [ $::ipaddress6 ]
+- *Default*: [ all IPv6 addresses  ]
 
 primary_names
 -------------
 List of names for primary addresses.
 - *Default*: [ $::fqdn, $::hostname ]
+
+one_primary_ipv4
+-----------------
+If true, only use the first address from primary_ipv4
+- *Default*: true
+
+one_primary_ipv6
+-----------------
+If true, only use the first address from primary_ipv6
+- *Default*: true
 
 entries
 -------
@@ -65,6 +75,8 @@ A hash with additional host entries to add.
 
 ```puppet
 class { 'hosts':
+    one_primary_ipv4 => false, 
+    one_primary_ipv6 => false,
     entries => { '192.168.2.1' => [ 'foo.bar.org', 'foo' ] }
 }
 ```
@@ -72,6 +84,8 @@ class { 'hosts':
 ## Hiera example
 
 ```yaml
+hosts::one_primary_ipv4: false
+hosts::one_primary_ipv6: false
 hosts::entries:
   '::2':
     - 'localhost2'
