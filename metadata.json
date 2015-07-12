@@ -2,7 +2,7 @@
   "name": "chrekh-hosts",
   "version": "1.0.2",
   "author": "chrekh",
-  "summary": "A minimalistic template-based module to manage /etc/hosts",
+  "summary": "A template-based module to manage /etc/hosts",
   "license": "Apache-2.0",
   "source": "git://github.com/chrekh/puppet-hosts",
   "project_page": "https://github.com/chrekh/puppet-hosts",
