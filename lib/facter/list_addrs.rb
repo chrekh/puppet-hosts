@@ -22,7 +22,6 @@ Facter.add('ipv4_lo_addrs') do
     result = lo_ipv4
   end
 end
-
 Facter.add('ipv4_pri_addrs') do
   setcode do
     result = primary_ipv4
