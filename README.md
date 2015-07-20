@@ -49,7 +49,7 @@ List of IPv4 addresses. Empty list means no entry.
 primary_ipv6
 ------------
 List of IPv6 addresses. Empty list means no entry.
-- *Default*: [ all IPv6 addresses (not loopback, multicast, or linklocal) ]
+- *Default*: [ IPv6 addresses (not loopback, multicast, or linklocal) ]
 
 primary_names
 -------------
