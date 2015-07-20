@@ -29,12 +29,12 @@ The file to add host entries to.
 lo_ipv4
 -------
 List of IPv4 addresses for localhost. Empty list means no entry.
-- *Default*: [ '127.0.0.1' ]
+- *Default*: [ IPv4 loopback addresses ]
 
 lo_ipv6
 -------
 List of IPv6 addresses for localhost. Empty list means no entry.
-- *Default*: [ '::1' ]
+- *Default*: [ IPv6 loopback addresses ]
 
 lo_names
 --------
@@ -44,12 +44,12 @@ List of names for localhost.
 primary_ipv4
 ------------
 List of IPv4 addresses. Empty list means no entry.
-- *Default*: [ all IPv4 addresses ]
+- *Default*: [ IPv4 addresses (not loopback or multicast) ]
 
 primary_ipv6
 ------------
 List of IPv6 addresses. Empty list means no entry.
-- *Default*: [ all IPv6 addresses  ]
+- *Default*: [ all IPv6 addresses (not loopback, multicast, or linklocal) ]
 
 primary_names
 -------------
