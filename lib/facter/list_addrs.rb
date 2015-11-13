@@ -19,21 +19,21 @@ Socket.ip_address_list.each { |addr|
 
 Facter.add('ipv4_lo_addrs') do
   setcode do
-    result = lo_ipv4
+    result = lo_ipv4.join(' ')
   end
 end
 Facter.add('ipv4_pri_addrs') do
   setcode do
-    result = primary_ipv4
+    result = primary_ipv4.join(' ')
   end
 end
 Facter.add('ipv6_lo_addrs') do
   setcode do
-    result = lo_ipv6
+    result = lo_ipv6.join(' ')
   end
 end
 Facter.add('ipv6_pri_addrs') do
   setcode do
-    result = primary_ipv6
+    result = primary_ipv6.join(' ')
   end
 end

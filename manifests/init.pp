@@ -4,13 +4,13 @@
 #
 class hosts (
   $file             = '/etc/hosts',
-  $lo_ipv4          = $ipv4_lo_addrs,
-  $lo_ipv6          = $ipv6_lo_addrs,
+  $lo_ipv4          = split($ipv4_lo_addrs,' '),
+  $lo_ipv6          = split($ipv6_lo_addrs,' '),
   $lo_names         = [ 'localhost' ],
   $one_primary_ipv4 = true,
   $one_primary_ipv6 = true,
-  $primary_ipv4     = $ipv4_pri_addrs,
-  $primary_ipv6     = $ipv6_pri_addrs,
+  $primary_ipv4     = split($ipv4_pri_addrs,' '),
+  $primary_ipv6     = split($ipv6_pri_addrs,' '),
   $primary_names    = [ $::fqdn, $::hostname ],
   $entries          = {},
 ) {
