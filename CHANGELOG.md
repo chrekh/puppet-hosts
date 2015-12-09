@@ -1,3 +1,11 @@
+##2.0.2
+
+Added support for FreeBSD, by Frank Wall
+
+##2.0.1
+
+Workaround for older facter not handling arrays
+
 ##2.0.0
 
 Rewriten the code to find the local IP-addresses, to use a custom fact
