@@ -24,6 +24,14 @@ class hosts (
   validate_array($primary_ipv6)
   validate_array($primary_names)
   validate_hash($entries)
+  case $::osfamily {
+    /^(FreeBSD|DragonFly)$/: {
+      $root_group = 'wheel'
+    }
+    default: {
+      $root_group = 'root'
+    }
+  }
   $pri_ipv4 = $one_primary_ipv4 ? {
     true    => [ $primary_ipv4[0] ],
     default => $primary_ipv4,
@@ -35,7 +43,7 @@ class hosts (
   file { $file:
     ensure  => present,
     owner   => 'root',
-    group   => 'root',
+    group   => $root_group,
     mode    => '0644',
     content => template('hosts/hosts.erb'),
   }
