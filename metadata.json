@@ -19,7 +19,8 @@
     {"operatingsystem": "CentOS"},
     {"operatingsystem": "Solaris"},
     {"operatingsystem": "SLES"},
-    {"operatingsystem": "SLED"}
+    {"operatingsystem": "SLED"},
+    {"operatingsystem": "FreeBSD"}
   ],
   "dependencies": [
   ],
