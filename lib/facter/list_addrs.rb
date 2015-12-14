@@ -5,7 +5,18 @@ primary_ipv4 = Array.new
 lo_ipv6 = Array.new
 primary_ipv6 = Array.new
 
-Socket.ip_address_list.each { |addr|
+if defined? Socket.ip_address_list
+  addrs = Socket.ip_address_list
+else
+  require 'facter/util/ip'
+  addrs = Array.new
+  Facter::Util::IP.get_interfaces.each do |interface|
+    addrs << Facter::Util::IP.get_interface_value(interface,ipaddress)
+    addrs << Facter::Util::IP.get_interface_value(interface,ipaddress6)
+  end
+end
+
+addrs.each { |addr|
   if addr.ipv4_loopback?
     lo_ipv4 << addr.ip_address
   elsif addr.ipv6_loopback?
