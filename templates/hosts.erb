@@ -2,29 +2,29 @@
 
 <%
 # Calculate the amount of tabs needed for alignment
-def tabs(len)
-  count = ( 31 - len ) / 8
+def tabs(str)
+  count = ( 31 - str.length ) / 8
   return " " if count < 1
   return "\t" * count
 end
 -%>
 # Localhost
 <% @lo_ipv4.reject{|elt| elt.to_s == 'undef'}.each do |ip| -%>
-<%= ip %><%= tabs(ip.length) %><%= @lo_names.join(' ') %>
+<%= ip %><%= tabs(ip) %><%= @lo_names.join(' ') %>
 <% end -%>
 <% @lo_ipv6.reject{|elt| elt.to_s == 'undef' }.each do |ip| -%>
-<%= ip %><%= tabs(ip.length) %><%= @lo_names.join(' ') %>
+<%= ip %><%= tabs(ip) %><%= @lo_names.join(' ') %>
 <% end -%>
 
 # Primary address
 <% @pri_ipv4.reject{|elt| elt.to_s == 'undef' || elt.to_s == '' }.each do |ip| -%>
-<%= ip %><%= tabs(ip.length) %><%= @primary_names.join(' ') %>
+<%= ip %><%= tabs(ip) %><%= @primary_names.join(' ') %>
 <% end -%>
 <% @pri_ipv6.reject{|elt| elt.to_s == 'undef' || elt.to_s == '' }.each do |ip| -%>
-<%= ip %><%= tabs(ip.length) %><%= @primary_names.join(' ') %>
+<%= ip %><%= tabs(ip) %><%= @primary_names.join(' ') %>
 <% end -%>
 
 # Additional entries (use hosts::entries to add)
 <% @entries.each_pair do |ip, names| -%>
-<%= ip %><%= tabs(ip.length) %><%= names.join(' ') %>
+<%= ip %><%= tabs(ip) %><%= names.join(' ') %>
 <% end -%>
