@@ -18,13 +18,13 @@ else
 end
 
 addrs.each { |addr|
-  if defined? addr.ipv4_loopback && addr.ipv4_loopback?
+  if (defined? addr.ipv4_loopback?) && addr.ipv4_loopback?
     lo_ipv4 << addr.ip_address
-  elsif defined? addr.ipv6_loopback && addr.ipv6_loopback?
+  elsif (defined? addr.ipv6_loopback?) && addr.ipv6_loopback?
     lo_ipv6 << addr.ip_address
-  elsif defined? addr.ipv4 && addr.ipv4? && !addr.ipv4_multicast?
+  elsif (defined? addr.ipv4?) && addr.ipv4? && !addr.ipv4_multicast?
     primary_ipv4 << addr.ip_address
-  elsif defined? addr.ipv6 && addr.ipv6? && !addr.ipv6_linklocal? && !addr.ipv6_multicast?
+  elsif (defined? addr.ipv6?) && addr.ipv6? && !addr.ipv6_linklocal? && !addr.ipv6_multicast?
     primary_ipv6 << addr.ip_address
   end
 }
