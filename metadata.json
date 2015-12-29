@@ -1,6 +1,6 @@
 {
   "name": "chrekh-hosts",
-  "version": "2.0.2",
+  "version": "2.0.3",
   "author": "chrekh",
   "summary": "A template-based module to manage /etc/hosts",
   "license": "Apache-2.0",

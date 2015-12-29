@@ -1,3 +1,7 @@
+##2.0.3
+
+Added compatibility for ruby18, with much help from Frank Wall
+
 ##2.0.2
 
 Added support for FreeBSD, by Frank Wall
