@@ -25,7 +25,7 @@ class hosts (
   validate_array($primary_names)
   validate_hash($entries)
   case $::osfamily {
-    /^(FreeBSD|DragonFly)$/: {
+    /^(FreeBSD|DragonFly|Darwin)$/: {
       $root_group = 'wheel'
     }
     default: {

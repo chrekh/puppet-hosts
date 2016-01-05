@@ -20,7 +20,8 @@
     {"operatingsystem": "Solaris"},
     {"operatingsystem": "SLES"},
     {"operatingsystem": "SLED"},
-    {"operatingsystem": "FreeBSD"}
+    {"operatingsystem": "FreeBSD"},
+    {"operatingsystem": "Darwin"}
   ],
   "dependencies": [
   ],
