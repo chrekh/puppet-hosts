@@ -1,3 +1,7 @@
+##2.0.4
+
+Added support for Darwin (OS X)
+
 ##2.0.3
 
 Added compatibility for ruby18, with much help from Frank Wall
