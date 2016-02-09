@@ -1,3 +1,7 @@
+##2.0.5
+
+Support for AIX, by Maxime Anciaux.
+
 ##2.0.4
 
 Added support for Darwin (OS X)
