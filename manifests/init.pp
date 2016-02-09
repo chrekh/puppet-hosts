@@ -28,6 +28,9 @@ class hosts (
     /^(FreeBSD|DragonFly|Darwin)$/: {
       $root_group = 'wheel'
     }
+    /^(AIX)$/: {
+      $root_group = 'system'
+    }
     default: {
       $root_group = 'root'
     }

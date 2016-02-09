@@ -21,7 +21,8 @@
     {"operatingsystem": "SLES"},
     {"operatingsystem": "SLED"},
     {"operatingsystem": "FreeBSD"},
-    {"operatingsystem": "Darwin"}
+    {"operatingsystem": "Darwin"},
+    {"operatingsystem": "AIX"}
   ],
   "dependencies": [
   ],
