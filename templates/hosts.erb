@@ -8,7 +8,7 @@ def tabs(str)
   return "\t" * count
 end
 -%>
-# Localhost
+# Loopback
 <% @lo_ipv4.reject{|elt| elt.to_s == 'undef'}.each do |ip| -%>
 <%= ip %><%= tabs(ip) %><%= @lo_names.join(' ') %>
 <% end -%>
