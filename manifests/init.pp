@@ -40,7 +40,7 @@ class hosts (
   }
   else {
     $loopback_ipv4 = $lo_ipv4
-  }    
+  }
   if empty($ipv4_pri_addrs) and empty($primary_ipv4) {
     $pri_ipv4 = [ $::ipaddress ]
   }
