@@ -1,3 +1,7 @@
+##2.1.0
+
+Fallback to std fact values for IP-adresses if custom facts fails.
+
 ##2.0.5
 
 Support for AIX, by Maxime Anciaux.
