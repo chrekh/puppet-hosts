@@ -36,7 +36,7 @@ class hosts (
     }
   }
   if empty($ipv4_pri_addrs) {
-    $pri_ipv4 = $::ipaddress
+    $pri_ipv4 = [ $::ipaddress ]
   }
   else {
     $pri_ipv4 = $one_primary_ipv4 ? {
