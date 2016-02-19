@@ -35,9 +35,14 @@ class hosts (
       $root_group = 'root'
     }
   }
-  $pri_ipv4 = $one_primary_ipv4 ? {
-    true    => [ $primary_ipv4[0] ],
-    default => $primary_ipv4,
+  if empty($ipv4_pri_addrs) {
+    $pri_ipv4 = $::ipaddress
+  }
+  else {
+    $pri_ipv4 = $one_primary_ipv4 ? {
+      true    => [ $primary_ipv4[0] ],
+      default => $primary_ipv4,
+    }
   }
   $pri_ipv6 = $one_primary_ipv6 ? {
     true    => [ $primary_ipv6[0] ],
