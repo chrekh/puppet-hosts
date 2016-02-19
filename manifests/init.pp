@@ -44,9 +44,14 @@ class hosts (
       default => $primary_ipv4,
     }
   }
-  $pri_ipv6 = $one_primary_ipv6 ? {
-    true    => [ $primary_ipv6[0] ],
-    default => $primary_ipv6,
+  if empty($ipv6_pri_addrs) {
+    $pri_ipv6 = [ $::ipaddress6 ]
+  }
+  else {
+    $pri_ipv6 = $one_primary_ipv6 ? {
+      true    => [ $primary_ipv6[0] ],
+      default => $primary_ipv6,
+    }
   }
   file { $file:
     ensure  => present,
