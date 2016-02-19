@@ -35,13 +35,13 @@ class hosts (
       $root_group = 'root'
     }
   }
-  if empty($ipv4_lo_addrs) {
+  if empty($ipv4_lo_addrs) and empty($lo_ipv4) {
     $loopback_ipv4 = [ '127.0.0.1' ]
   }
   else {
     $loopback_ipv4 = $lo_ipv4
   }    
-  if empty($ipv4_pri_addrs) {
+  if empty($ipv4_pri_addrs) and empty($primary_ipv4) {
     $pri_ipv4 = [ $::ipaddress ]
   }
   else {
@@ -50,7 +50,7 @@ class hosts (
       default => $primary_ipv4,
     }
   }
-  if empty($ipv6_pri_addrs) {
+  if empty($ipv6_pri_addrs) and empty($primary_ipv6) {
     $pri_ipv6 = [ $::ipaddress6 ]
   }
   else {
