@@ -12,7 +12,7 @@ end
 <% @loopback_ipv4.reject{|elt| elt.to_s == 'undef'}.each do |ip| -%>
 <%= ip %><%= tabs(ip) %><%= @lo_names.join(' ') %>
 <% end -%>
-<% @loopback_ipv6.reject{|elt| elt.to_s == 'undef' }.each do |ip| -%>
+<% @lo_ipv6.reject{|elt| elt.to_s == 'undef' }.each do |ip| -%>
 <%= ip %><%= tabs(ip) %><%= @lo_names.join(' ') %>
 <% end -%>
 

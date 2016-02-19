@@ -40,13 +40,7 @@ class hosts (
   }
   else {
     $loopback_ipv4 = $lo_ipv4
-  }
-  if empty($ipv6_lo_addrs) {
-    $loopback_ipv6 = [ '::1' ]
-  }
-  else {
-    $loopback_ipv6 = $lo_ipv6
-  }
+  }    
   if empty($ipv4_pri_addrs) {
     $pri_ipv4 = [ $::ipaddress ]
   }
