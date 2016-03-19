@@ -78,7 +78,7 @@ A hash with additional host entries to add.
 class { 'hosts':
     one_primary_ipv4 => false, 
     one_primary_ipv6 => false,
-    entries => { '192.168.2.1' => [ 'foo.bar.org', 'foo' ] }
+    entries => { '192.168.2.1' => [ 'foo.example.org', 'foo' ] }
 }
 ```
 
@@ -91,6 +91,6 @@ hosts::entries:
   '::2':
     - 'localhost2'
   '2001:db8:abba::1':
-    - 'foo.bar.org'
+    - 'foo.example.org'
     - 'foo'
 ```
