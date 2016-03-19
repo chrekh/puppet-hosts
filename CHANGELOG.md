@@ -1,3 +1,7 @@
+##2.1.1
+
+Changed domain used as example.
+
 ##2.1.0
 
 Fallback to std fact values for IP-adresses if custom facts fails.
