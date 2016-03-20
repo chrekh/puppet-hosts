@@ -5,7 +5,9 @@ primary_ipv4 = Array.new
 lo_ipv6 = Array.new
 primary_ipv6 = Array.new
 
-if defined? Socket.ip_address_list
+if defined? Socket.getifaddrs
+  addrs = Socket.getifaddrs.map { |i| i.addr }
+elsif defined? Socket.ip_address_list
   addrs = Socket.ip_address_list
 else
   require 'facter/util/ip'
