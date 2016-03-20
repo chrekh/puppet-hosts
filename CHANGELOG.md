@@ -1,3 +1,7 @@
+##2.2.0
+
+Entries in hosts::entries now overrides IP's on local interfaces
+
 ##2.1.1
 
 Changed domain used as example.
