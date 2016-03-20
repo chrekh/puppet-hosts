@@ -69,7 +69,8 @@ If true, only use the first address from primary_ipv6
 
 entries
 -------
-A hash with additional host entries to add.
+A hash with additional host entries to add. Entries in this hash
+overrides automatic hostentries for IP's on local interfaces.
 - *Default*: {}
 
 ## Example

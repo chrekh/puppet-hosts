@@ -7,20 +7,27 @@ def tabs(str)
   return " " if count < 1
   return "\t" * count
 end
+
+# Create a hash of addrs in hosts::entries to be able to exclude it
+# from entries for loopback of primary.
+explicit = Hash.new
+@entries.each_pair do |ip,names|
+  explicit[ip] = 1
+end
 -%>
 # Loopback
-<% @loopback_ipv4.reject{|elt| elt.to_s == 'undef'}.each do |ip| -%>
+<% @loopback_ipv4.reject{|elt| elt.to_s == 'undef' || explicit.key?(elt) }.each do |ip| -%>
 <%= ip %><%= tabs(ip) %><%= @lo_names.join(' ') %>
 <% end -%>
-<% @lo_ipv6.reject{|elt| elt.to_s == 'undef' }.each do |ip| -%>
+<% @lo_ipv6.reject{|elt| elt.to_s == 'undef' || explicit.key?(elt) }.each do |ip| -%>
 <%= ip %><%= tabs(ip) %><%= @lo_names.join(' ') %>
 <% end -%>
 
 # Primary address
-<% @pri_ipv4.reject{|elt| elt.to_s == 'undef' || elt.to_s == '' }.each do |ip| -%>
+<% @pri_ipv4.reject{|elt| elt.to_s == 'undef' || elt.to_s == '' || explicit.key?(elt) }.each do |ip| -%>
 <%= ip %><%= tabs(ip) %><%= @primary_names.join(' ') %>
 <% end -%>
-<% @pri_ipv6.reject{|elt| elt.to_s == 'undef' || elt.to_s == '' }.each do |ip| -%>
+<% @pri_ipv6.reject{|elt| elt.to_s == 'undef' || elt.to_s == '' || explicit.key?(elt) }.each do |ip| -%>
 <%= ip %><%= tabs(ip) %><%= @primary_names.join(' ') %>
 <% end -%>
 
