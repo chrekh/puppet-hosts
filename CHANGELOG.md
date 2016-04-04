@@ -1,3 +1,22 @@
+##2.2.1
+
+Entries in hosts::entries can now be grouped, resulting in a comment
+before each group in /etc/hosts. Example,
+
+```yaml
+hosts::entries:
+  'Foocluster nodes':
+    '2001:db8:abba::1':
+      - 'node1.example.org'
+      - 'node1'
+    '2001:db8:abba::2':
+      - 'node2.example.org'
+      - 'node2'
+```
+
+This change is backward compatible. The old data-structure still works
+as before.
+
 ##2.2.0
 
 Entries in hosts::entries now overrides IP's on local interfaces
