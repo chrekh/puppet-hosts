@@ -71,6 +71,7 @@ entries
 -------
 A hash with additional host entries to add. Entries in this hash
 overrides automatic hostentries for IP's on local interfaces.
+The content can be either comment => { ip => [ names ], ... } or just ip => [ names ].
 - *Default*: {}
 
 ## Example
@@ -91,7 +92,11 @@ hosts::one_primary_ipv6: false
 hosts::entries:
   '::2':
     - 'localhost2'
-  '2001:db8:abba::1':
-    - 'foo.example.org'
-    - 'foo'
+  'Foocluster nodes':
+    '2001:db8:abba::1':
+      - 'node1.example.org'
+      - 'node1'
+    '2001:db8:abba::2':
+      - 'node2.example.org'
+      - 'node2'
 ```

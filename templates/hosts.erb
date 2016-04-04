@@ -32,6 +32,15 @@ end
 <% end -%>
 
 # Additional entries (use hosts::entries to add)
-<% @entries.each_pair do |ip, names| -%>
+<% @entries.each_pair do |key, val| -%>
+<% if val.is_a?(Hash) -%>
+
+# <%= key %>
+<% val.each_pair do |ip, names| -%>
 <%= ip %><%= tabs(ip) %><%= names.join(' ') %>
+<% end -%>
+
+<% else -%>
+<%= key %><%= tabs(key) %><%= val.join(' ') %>
+<% end -%>
 <% end -%>
