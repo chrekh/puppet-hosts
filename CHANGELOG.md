@@ -1,3 +1,8 @@
+##2.2.2
+
+Fixed so that hosts::entries in new format overrides IP's on local
+interfaces
+
 ##2.2.1
 
 Entries in hosts::entries can now be grouped, resulting in a comment
