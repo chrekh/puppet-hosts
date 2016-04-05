@@ -11,8 +11,14 @@ end
 # Create a hash of addrs in hosts::entries to be able to exclude it
 # from entries for loopback of primary.
 explicit = Hash.new
-@entries.each_pair do |ip,names|
-  explicit[ip] = 1
+@entries.each_pair do |key, val|
+  if val.is_a?(Hash)
+    val.each_pair do |ip, names|
+      explicit[ip] = 1
+    end
+  else
+    explicit[key] = 1
+  end
 end
 -%>
 # Loopback
