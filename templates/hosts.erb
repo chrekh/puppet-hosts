@@ -9,7 +9,7 @@ def tabs(str)
 end
 
 # Create a hash of addrs in hosts::entries to be able to exclude it
-# from entries for loopback of primary.
+# from entries for loopback or primary.
 explicit = Hash.new
 @entries.each_pair do |key, val|
   if val.is_a?(Hash)
