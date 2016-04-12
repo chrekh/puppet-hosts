@@ -1,3 +1,7 @@
+##2.2.3
+
+Change order of IP loaders in facter to be compatible with AIX
+
 ##2.2.2
 
 Fixed so that hosts::entries in new format overrides IP's on local
