@@ -1,9 +1,9 @@
 require 'socket'
 
-lo_ipv4 = Array.new
-primary_ipv4 = Array.new
-lo_ipv6 = Array.new
-primary_ipv6 = Array.new
+lo_ipv4 = [ Facter.value('ipaddress_lo') ].compact
+primary_ipv4 = [ Facter.value('ipadress') ].compact
+lo_ipv6 = [ Facter.value('ipaddress6_lo') ].compact
+primary_ipv6 = [ Facter.value('ipaddresss6') ].compact
 
 if defined? Socket.ip_address_list
   addrs = Socket.ip_address_list
@@ -33,21 +33,21 @@ addrs.each { |addr|
 
 Facter.add('ipv4_lo_addrs') do
   setcode do
-    result = lo_ipv4.join(' ')
+    result = lo_ipv4.uniq.join(' ')
   end
 end
 Facter.add('ipv4_pri_addrs') do
   setcode do
-    result = primary_ipv4.join(' ')
+    result = primary_ipv4.uniq.join(' ')
   end
 end
 Facter.add('ipv6_lo_addrs') do
   setcode do
-    result = lo_ipv6.join(' ')
+    result = lo_ipv6.uniq.join(' ')
   end
 end
 Facter.add('ipv6_pri_addrs') do
   setcode do
-    result = primary_ipv6.join(' ')
+    result = primary_ipv6.uniq.join(' ')
   end
 end
