@@ -1,3 +1,10 @@
+##2.2.4
+
+Put standart ipaddress facts first in lists.
+
+The purpose is to get the expected ip-address if using
+one_primary_ipv4 or one_primary_ipv6
+
 ##2.2.3
 
 Change order of IP loaders in facter to be compatible with AIX
