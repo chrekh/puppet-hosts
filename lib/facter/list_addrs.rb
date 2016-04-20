@@ -6,16 +6,28 @@ lo_ipv6 = [ Facter.value('ipaddress6_lo') ].compact
 primary_ipv6 = [ Facter.value('ipaddresss6') ].compact
 
 if defined? Socket.ip_address_list
-  addrs = Socket.ip_address_list
-elsif defined? Socket.getifaddrs
-  addrs = Socket.getifaddrs.map { |i| i.addr }
-else
-  require 'facter/util/ip'
+  begin
+    addrs = Socket.ip_address_list
+  rescue
+  end
+end
+if ! addrs and defined? Socket.getifaddrs
+  begin
+    addrs = Socket.getifaddrs.map { |i| i.addr }
+  rescue
+  end
+end
+if ! addrs
   addrs = Array.new
-  Facter::Util::IP.get_interfaces.each do |interface|
-    %w{ipaddress ipaddress6}.each do |label|
-      addrs << Facter::Util::IP.get_interface_value(interface,label)
+  begin
+    require 'facter/util/ip'
+    Facter::Util::IP.get_interfaces.each do |interface|
+      %w{ipaddress ipaddress6}.each do |label|
+        addrs << Facter::Util::IP.get_interface_value(interface,label)
+      end
     end
+  rescue LoadError
+  rescue
   end
 end
 
