@@ -26,7 +26,7 @@ if ! addrs
         addrs << Facter::Util::IP.get_interface_value(interface,label)
       end
     end
-  rescue LoadError
+  rescue ScriptError
   rescue
   end
 end
