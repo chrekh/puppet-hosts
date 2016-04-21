@@ -8,12 +8,14 @@ primary_ipv6 = [ Facter.value('ipaddresss6') ].compact
 if defined? Socket.ip_address_list
   begin
     addrs = Socket.ip_address_list
+  rescue ScriptError
   rescue
   end
 end
 if ! addrs and defined? Socket.getifaddrs
   begin
     addrs = Socket.getifaddrs.map { |i| i.addr }
+  rescue ScriptError
   rescue
   end
 end
