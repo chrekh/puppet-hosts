@@ -1,3 +1,7 @@
+##2.2.5
+
+Use exceptions in custom fact.
+
 ##2.2.4
 
 Put standart ipaddress facts first in lists.
