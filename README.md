@@ -67,6 +67,19 @@ one_primary_ipv6
 If true, only use the first address from primary_ipv6
 - *Default*: true
 
+enable_ipv4
+-----------
+
+If false, don't add IPv4 loopback or primary addresses. (IPv4
+addresses from hosts::entries is still added)
+- *Default*: true
+
+enable_ipv6
+-----------
+If false, don't add IPv6 loopback or primary addresses. (IPv6
+addresses from hosts::entries is still added)
+- *Default*: true
+
 entries
 -------
 A hash with additional host entries to add. Entries in this hash
