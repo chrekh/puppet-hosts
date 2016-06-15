@@ -22,19 +22,27 @@ explicit = Hash.new
 end
 -%>
 # Loopback
-<% @loopback_ipv4.reject{|elt| elt.to_s == 'undef' || explicit.key?(elt) }.each do |ip| -%>
-<%= ip %><%= tabs(ip) %><%= @lo_names.join(' ') %>
+<% if @enable_ipv4 -%>
+<%   @loopback_ipv4.reject{|elt| elt.to_s == 'undef' || explicit.key?(elt) }.each do |ip| -%>
+<%=    ip %><%= tabs(ip) %><%= @lo_names.join(' ') %>
+<%   end -%>
 <% end -%>
-<% @lo_ipv6.reject{|elt| elt.to_s == 'undef' || explicit.key?(elt) }.each do |ip| -%>
-<%= ip %><%= tabs(ip) %><%= @lo_names.join(' ') %>
+<% if @enable_ipv6 -%>
+<%   @lo_ipv6.reject{|elt| elt.to_s == 'undef' || explicit.key?(elt) }.each do |ip| -%>
+<%=    ip %><%= tabs(ip) %><%= @lo_names.join(' ') %>
+<%   end -%>
 <% end -%>
 
 # Primary address
-<% @pri_ipv4.reject{|elt| elt.to_s == 'undef' || elt.to_s == '' || explicit.key?(elt) }.each do |ip| -%>
-<%= ip %><%= tabs(ip) %><%= @primary_names.join(' ') %>
+<% if @enable_ipv4 -%>
+<%   @pri_ipv4.reject{|elt| elt.to_s == 'undef' || elt.to_s == '' || explicit.key?(elt) }.each do |ip| -%>
+<%=    ip %><%= tabs(ip) %><%= @primary_names.join(' ') %>
+<%   end -%>
 <% end -%>
-<% @pri_ipv6.reject{|elt| elt.to_s == 'undef' || elt.to_s == '' || explicit.key?(elt) }.each do |ip| -%>
-<%= ip %><%= tabs(ip) %><%= @primary_names.join(' ') %>
+<% if @enable_ipv6 -%>
+<%   @pri_ipv6.reject{|elt| elt.to_s == 'undef' || elt.to_s == '' || explicit.key?(elt) }.each do |ip| -%>
+<%=   ip %><%= tabs(ip) %><%= @primary_names.join(' ') %>
+<%   end -%>
 <% end -%>
 
 # Additional entries (use hosts::entries to add)

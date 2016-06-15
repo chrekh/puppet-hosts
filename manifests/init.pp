@@ -9,6 +9,8 @@ class hosts (
   $lo_names         = [ 'localhost' ],
   $one_primary_ipv4 = true,
   $one_primary_ipv6 = true,
+  $enable_ipv4      = true,
+  $enable_ipv6      = true,
   $primary_ipv4     = split($ipv4_pri_addrs,' '),
   $primary_ipv6     = split($ipv6_pri_addrs,' '),
   $primary_names    = [ $::fqdn, $::hostname ],
@@ -20,6 +22,8 @@ class hosts (
   validate_array($lo_names)
   validate_bool($one_primary_ipv4)
   validate_bool($one_primary_ipv6)
+  validate_bool($enable_ipv4)
+  validate_bool($enable_ipv6)
   validate_array($primary_ipv4)
   validate_array($primary_ipv6)
   validate_array($primary_names)
