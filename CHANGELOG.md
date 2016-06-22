@@ -1,3 +1,11 @@
+##2.2.7
+
+Bugfixes to fact handling.
+
+##2.2.6
+
+Add boolean parameters enable_ipv4 & enable_ipv6
+
 ##2.2.5
 
 Use exceptions in custom fact.
