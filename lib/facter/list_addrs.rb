@@ -1,9 +1,9 @@
 require 'socket'
 
 lo_ipv4 = [ Facter.value('ipaddress_lo') ].compact
-primary_ipv4 = [ Facter.value('ipadress') ].compact
+primary_ipv4 = [ Facter.value('ipaddress') ].compact
 lo_ipv6 = [ Facter.value('ipaddress6_lo') ].compact
-primary_ipv6 = [ Facter.value('ipaddresss6') ].compact
+primary_ipv6 = [ Facter.value('ipaddress6') ].compact
 
 if defined? Socket.ip_address_list
   begin
