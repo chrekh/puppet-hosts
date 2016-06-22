@@ -28,7 +28,7 @@ end
 <%   end -%>
 <% end -%>
 <% if @enable_ipv6 -%>
-<%   @lo_ipv6.reject{|elt| elt.to_s == 'undef' || explicit.key?(elt) }.each do |ip| -%>
+<%   @loopback_ipv6.reject{|elt| elt.to_s == 'undef' || explicit.key?(elt) }.each do |ip| -%>
 <%=    ip %><%= tabs(ip) %><%= @lo_names.join(' ') %>
 <%   end -%>
 <% end -%>
