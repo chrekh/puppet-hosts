@@ -39,29 +39,21 @@ class hosts (
       $root_group = 'root'
     }
   }
-  if empty($ipv4_lo_addrs) and empty($lo_ipv4) {
-    $loopback_ipv4 = [ '127.0.0.1' ]
+  if $one_primary_ipv4 {
+    $loopback_ipv4 = [ $lo_ipv4[0] ]
+    $pri_ipv4 = [ $primary_ipv4[0] ]
   }
   else {
     $loopback_ipv4 = $lo_ipv4
+    $pri_ipv4 = $primary_ipv4
   }
-  if empty($ipv4_pri_addrs) and empty($primary_ipv4) {
-    $pri_ipv4 = [ $::ipaddress ]
-  }
-  else {
-    $pri_ipv4 = $one_primary_ipv4 ? {
-      true    => [ $primary_ipv4[0] ],
-      default => $primary_ipv4,
-    }
-  }
-  if empty($ipv6_pri_addrs) and empty($primary_ipv6) {
-    $pri_ipv6 = [ $::ipaddress6 ]
+  if $one_primary_ipv6 {
+    $loopback_ipv6 = [ $lo_ipv6[0] ]
+    $pri_ipv6 = [ $primary_ipv6[0] ]
   }
   else {
-    $pri_ipv6 = $one_primary_ipv6 ? {
-      true    => [ $primary_ipv6[0] ],
-      default => $primary_ipv6,
-    }
+    $loopback_ipv6 = $lo_ipv6
+    $pri_ipv6 = $primary_ipv6
   }
   file { $file:
     ensure  => present,
