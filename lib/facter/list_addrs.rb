@@ -4,6 +4,9 @@ lo_ipv4 = [ Facter.value('ipaddress_lo') ].compact
 primary_ipv4 = [ Facter.value('ipaddress') ].compact
 lo_ipv6 = [ Facter.value('ipaddress6_lo') ].compact
 primary_ipv6 = [ Facter.value('ipaddress6') ].compact
+if primary_ipv6[0] =~ /^fe80::/i
+  primary_ipv6 = []
+end
 
 if defined? Socket.ip_address_list
   begin
