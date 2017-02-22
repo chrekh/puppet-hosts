@@ -55,6 +55,8 @@ class hosts (
     $loopback_ipv6 = $lo_ipv6
     $pri_ipv6 = $primary_ipv6
   }
+  $entries_output = hiera_hash('hosts::entries', $entries)
+  validate_hash($entries_output)
   file { $file:
     ensure  => present,
     owner   => 'root',
