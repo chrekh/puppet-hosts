@@ -46,7 +46,7 @@ end
 <% end -%>
 
 # Additional entries (use hosts::entries to add)
-<% @entries.each_pair do |key, val| -%>
+<% @entries_output.each_pair do |key, val| -%>
 <% if val.is_a?(Hash) -%>
 
 # <%= key %>
