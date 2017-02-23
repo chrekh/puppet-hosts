@@ -1,3 +1,7 @@
+##2.3.0
+
+Ability to merge entries by hiera
+
 ##2.2.7
 
 Bugfixes to fact handling.
