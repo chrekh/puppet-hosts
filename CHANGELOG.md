@@ -1,3 +1,7 @@
+##2.3.1
+
+Bugfix: Reject nil IP
+
 ##2.3.0
 
 Ability to merge entries by hiera
