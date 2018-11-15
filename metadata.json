@@ -7,26 +7,58 @@
   "source": "git://github.com/chrekh/puppet-hosts",
   "project_page": "https://github.com/chrekh/puppet-hosts",
   "issues_url": "https://github.com/chrekh/puppet-hosts/issues",
-  "requirements": [
-    {"name": "pe","version_requirement": ">= 3.2.0"},
-    {"name": "puppet","version_requirement": ">= 3.0.0"}
+  "dependencies": [
+
   ],
   "operatingsystem_support": [
-    {"operatingsystem": "Gentoo"},
-    {"operatingsystem": "RedHat"},
-    {"operatingsystem": "Debian"},
-    {"operatingsystem": "Ubuntu"},
-    {"operatingsystem": "CentOS"},
-    {"operatingsystem": "Solaris"},
-    {"operatingsystem": "SLES"},
-    {"operatingsystem": "SLED"},
-    {"operatingsystem": "FreeBSD"},
-    {"operatingsystem": "Darwin"},
-    {"operatingsystem": "AIX"}
+    {
+      "operatingsystem": "Gentoo"
+    },
+    {
+      "operatingsystem": "RedHat"
+    },
+    {
+      "operatingsystem": "Debian"
+    },
+    {
+      "operatingsystem": "Ubuntu"
+    },
+    {
+      "operatingsystem": "CentOS"
+    },
+    {
+      "operatingsystem": "Solaris"
+    },
+    {
+      "operatingsystem": "SLES"
+    },
+    {
+      "operatingsystem": "SLED"
+    },
+    {
+      "operatingsystem": "FreeBSD"
+    },
+    {
+      "operatingsystem": "Darwin"
+    },
+    {
+      "operatingsystem": "AIX"
+    }
   ],
-  "dependencies": [
+  "requirements": [
+    {
+      "name": "pe",
+      "version_requirement": ">= 3.2.0"
+    },
+    {
+      "name": "puppet",
+      "version_requirement": ">= 3.0.0"
+    }
   ],
   "tags": [
     "hosts"
-  ]
+  ],
+  "pdk-version": "1.7.0",
+  "template-url": "file:///opt/puppetlabs/pdk/share/cache/pdk-templates.git",
+  "template-ref": "1.7.0-0-g57412ed"
 }
