@@ -8,7 +8,10 @@
   "project_page": "https://github.com/chrekh/puppet-hosts",
   "issues_url": "https://github.com/chrekh/puppet-hosts/issues",
   "dependencies": [
-
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 4.2.0 < 6.0.0"
+    }
   ],
   "operatingsystem_support": [
     {
