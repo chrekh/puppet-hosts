@@ -6,6 +6,7 @@ describe 'hosts' do
       'ipv6_lo_addrs'  => '::1',
       'ipv4_pri_addrs' => '192.168.2.1',
       'ipv6_pri_addrs' => '2001:db8:abba::1',
+      'osfamily'       => 'Gentoo',
     }
   end
 
