@@ -1,3 +1,7 @@
+##3.0.0
+
+Replace deprecated validate-functions with puppet-4 data types.
+
 ##2.4.0
 
 Converted to pdk.
