@@ -1,3 +1,7 @@
+## 3.1.0
+
+Sort IP-adresses to make hosts content stable across runs.
+
 ## 3.0.0
 
 Replace deprecated validate-functions with puppet-4 data types.
