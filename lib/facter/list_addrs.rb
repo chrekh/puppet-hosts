@@ -50,21 +50,21 @@ end
 
 Facter.add('ipv4_lo_addrs') do
   setcode do
-    result = lo_ipv4.uniq.join(' ')
+    result = lo_ipv4.uniq.sort.join(' ')
   end
 end
 Facter.add('ipv4_pri_addrs') do
   setcode do
-    result = primary_ipv4.uniq.join(' ')
+    result = primary_ipv4.uniq.sort.join(' ')
   end
 end
 Facter.add('ipv6_lo_addrs') do
   setcode do
-    result = lo_ipv6.uniq.join(' ')
+    result = lo_ipv6.uniq.sort.join(' ')
   end
 end
 Facter.add('ipv6_pri_addrs') do
   setcode do
-    result = primary_ipv6.uniq.join(' ')
+    result = primary_ipv6.uniq.sort.join(' ')
   end
 end
