@@ -4,7 +4,7 @@ lo_ipv4 = [Facter.value('ipaddress_lo')].compact
 primary_ipv4 = [Facter.value('ipaddress')].compact
 lo_ipv6 = [Facter.value('ipaddress6_lo')].compact
 primary_ipv6 = [Facter.value('ipaddress6')].compact
-if primary_ipv6[0] =~ %r{^fe80::}i
+if %r{^fe80::}i.match?(primary_ipv6[0])
   primary_ipv6 = []
 end
 
