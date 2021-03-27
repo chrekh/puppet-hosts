@@ -23,11 +23,17 @@ end
 -%>
 # Loopback
 <% if @enable_ipv4 -%>
+<%   @exclude_ipv4.each do |re| -%>
+<%     @loopback_ipv4.reject!{|elt| %r{#{re}}.match?(elt) } -%>
+<%   end -%>
 <%   @loopback_ipv4.reject{|elt| !elt || elt.to_s == 'undef' || explicit.key?(elt) }.each do |ip| -%>
 <%=    ip %><%= tabs(ip) %><%= @lo_names.join(' ') %>
 <%   end -%>
 <% end -%>
 <% if @enable_ipv6 -%>
+<%   @exclude_ipv6.each do |re| -%>
+<%     @loopback_ipv6.reject!{|elt| %r{#{re}}.match?(elt) } -%>
+<%   end -%>
 <%   @loopback_ipv6.reject{|elt| !elt || elt.to_s == 'undef' || explicit.key?(elt) }.each do |ip| -%>
 <%=    ip %><%= tabs(ip) %><%= @lo_names.join(' ') %>
 <%   end -%>
@@ -35,11 +41,17 @@ end
 
 # Primary address
 <% if @enable_ipv4 -%>
+<%   @exclude_ipv4.each do |re| -%>
+<%     @pri_ipv4.reject!{|elt| %r{#{re}}.match?(elt) } -%>
+<%   end -%>
 <%   @pri_ipv4.reject{|elt| !elt || elt.to_s == 'undef' || elt.to_s == '' || explicit.key?(elt) }.each do |ip| -%>
 <%=    ip %><%= tabs(ip) %><%= @primary_names.join(' ') %>
 <%   end -%>
 <% end -%>
 <% if @enable_ipv6 -%>
+<%   @exclude_ipv6.each do |re| -%>
+<%     @pri_ipv6 = @pri_ipv6.reject!{|elt| %r{#{re}}.match?(elt) } -%>
+<%   end -%>
 <%   @pri_ipv6.reject{|elt| !elt || elt.to_s == 'undef' || elt.to_s == '' || explicit.key?(elt) }.each do |ip| -%>
 <%=   ip %><%= tabs(ip) %><%= @primary_names.join(' ') %>
 <%   end -%>

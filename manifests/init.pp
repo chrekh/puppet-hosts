@@ -14,6 +14,8 @@ class hosts (
   Array[String] $primary_ipv4  = split($ipv4_pri_addrs,' '),
   Array[String] $primary_ipv6  = split($ipv6_pri_addrs,' '),
   Array[String] $primary_names = [ $::fqdn, $::hostname ],
+  Array[String] $exclude_ipv4  = [],
+  Array[String] $exclude_ipv6  = [],
   Hash $entries                = {},
 ) {
   case $::osfamily {
