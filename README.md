@@ -80,6 +80,32 @@ If false, don't add IPv6 loopback or primary addresses. (IPv6
 addresses from hosts::entries is still added)
 - *Default*: true
 
+include_ipv4
+------------
+A list of regexp. If the list is empty all IPv4 addresses are included. If the
+list is not empty all IPv4 addresses matching any of the regexps are included.
+- *Default*: empty
+
+include_ipv6
+------------
+A list of regexp. If the list is empty all IPv6 addresses are included. If the
+list is not empty all IPv6 addresses matching any of the regexps are included.
+- *Default*: empty
+
+exclude_ipv4
+------------
+A list of regexp. Exclude IPv4 addresses that matches any of the regexps.
+- *Default*: empty
+
+exclude_ipv6
+------------
+A list of regexp. Exclude IPv6 addresses that matches any of the regexps.
+- *Default*: empty
+
+Note that the regexps in include/exclude_ipv4/ipv6 is used to fillter the
+collected addresses for all interfaces, both loopback and other. Contents
+explicitly entered by param 'entries' is not filtered at all.
+
 entries
 -------
 A hash with additional host entries to add. Entries in this hash
