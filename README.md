@@ -80,6 +80,26 @@ If false, don't add IPv6 loopback or primary addresses. (IPv6
 addresses from hosts::entries is still added)
 - *Default*: true
 
+include_ipv4
+------------
+A list of regexp. Inglude IPv4 addresses that matches any of the regexps.
+- *Default*: empty
+
+include_ipv6
+------------
+A list of regexp. Inglude IPv6 addresses that matches any of the regexps.
+- *Default*: empty
+
+exclude_ipv4
+------------
+A list of regexp. Exclude IPv4 addresses that matches any of the regexps.
+- *Default*: empty
+
+exclude_ipv6
+------------
+A list of regexp. Exclude IPv6 addresses that matches any of the regexps.
+- *Default*: empty
+
 entries
 -------
 A hash with additional host entries to add. Entries in this hash
