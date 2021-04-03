@@ -1,3 +1,7 @@
+## 3.2.0
+
+Added ability to filter the lists of addresses with lists of regexps.
+
 ## 3.1.0
 
 Sort IP-adresses to make hosts content stable across runs.
