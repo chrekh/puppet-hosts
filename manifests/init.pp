@@ -36,16 +36,16 @@ class hosts (
     $pri_ipv4 = [ $primary_ipv4[0] ]
   }
   else {
-    $loopback_ipv4 = $lo_ipv4
-    $pri_ipv4 = $primary_ipv4
+    $loopback_ipv4 = $lo_ipv4.sort
+    $pri_ipv4 = $primary_ipv4.sort
   }
   if $one_primary_ipv6 {
     $loopback_ipv6 = [ $lo_ipv6[0] ]
     $pri_ipv6 = [ $primary_ipv6[0] ]
   }
   else {
-    $loopback_ipv6 = $lo_ipv6
-    $pri_ipv6 = $primary_ipv6
+    $loopback_ipv6 = $lo_ipv6.sort
+    $pri_ipv6 = $primary_ipv6.sort
   }
 
   $entries_output = lookup('hosts::entries', Hash, 'hash', $entries)
