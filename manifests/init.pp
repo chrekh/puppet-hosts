@@ -48,7 +48,7 @@ class hosts (
     $pri_ipv6 = $primary_ipv6
   }
 
-  $entries_output = hiera_hash('hosts::entries', $entries)
+  $entries_output = lookup('hosts::entries', Hash, 'hash', $entries)
   assert_type(Hash, $entries_output)
 
   file { $file:
