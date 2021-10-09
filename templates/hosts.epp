@@ -1,0 +1,25 @@
+# Managed by puppet module hosts.
+
+# Loopback
+<% if $hosts::enable_ipv4 { -%>
+<%   $hosts::loopback_ipv4.each | $ip | { -%>
+<%=    $ip %><%= hosts::tabs($ip) %><%= $hosts::lo_names.join(' ') %>
+<%   } -%>
+<% } -%>
+<% if $hosts::enable_ipv6 { -%>
+<%   $hosts::loopback_ipv6.each | $ip | { -%>
+<%=    $ip %><%= hosts::tabs($ip) %><%= $hosts::lo_names.join(' ') %>
+<%   } -%>
+<% } -%>
+
+# Primary address
+<% if $hosts::enable_ipv4 { -%>
+<%   $hosts::pri_ipv4.each | $ip | { -%>
+<%=    $ip %><%= hosts::tabs($ip) %><%= $hosts::primary_names.join(' ') %>
+<%   } -%>
+<% } -%>
+<% if $hosts::enable_ipv6 { -%>
+<%   $hosts::pri_ipv6.each | $ip | { -%>
+<%=    $ip %><%= hosts::tabs($ip) %><%= $hosts::primary_names.join(' ') %>
+<%   } -%>
+<% } -%>

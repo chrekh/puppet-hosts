@@ -56,6 +56,6 @@ class hosts (
     owner   => 'root',
     group   => $root_group,
     mode    => '0644',
-    content => template('hosts/hosts.erb'),
+    content => epp('hosts/hosts.epp'),
   }
 }
