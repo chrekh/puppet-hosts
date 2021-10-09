@@ -23,3 +23,18 @@
 <%=    $ip %><%= hosts::tabs($ip) %><%= $hosts::primary_names.join(' ') %>
 <%   } -%>
 <% } -%>
+
+# Additional entries (use hosts::entries to add)
+<% $hosts::entries_output.each |$key,$val| { -%>
+<%   if $val =~ Hash { -%>
+
+# <%= $key %>
+<%     $val.each |$ip,$names| { -%>
+<%= $ip %><%= hosts::tabs($ip) %><%= $names.join(' ') %>
+<%     } -%>
+
+<%   } -%>
+<%   else { -%>
+<%= $key %><%= hosts::tabs($key) %><%= $val.join(' ') %>
+<%   } -%>
+<% } -%>
