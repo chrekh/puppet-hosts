@@ -4,8 +4,8 @@
 #
 class hosts (
   Stdlib::Absolutepath $file   = '/etc/hosts',
-  Array[String] $lo_ipv4       = split($ipv4_lo_addrs,' '),
-  Array[String] $lo_ipv6       = split($ipv6_lo_addrs,' '),
+  Array[String] $lo_ipv4       = hosts::collect_lo('bindings'),
+  Array[String] $lo_ipv6       = hosts::collect_lo('bindings6'),
   Array[String] $lo_names      = [ 'localhost' ],
   Boolean $one_primary_ipv4    = true,
   Boolean $one_primary_ipv6    = true,
