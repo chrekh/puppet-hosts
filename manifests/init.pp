@@ -32,16 +32,16 @@ class hosts (
     }
   }
   if $one_primary_ipv4 {
-    $loopback_ipv4 = [ $lo_ipv4[0] ]
-    $pri_ipv4 = [ $primary_ipv4[0] ]
+    $loopback_ipv4 = [ $lo_ipv4[0] ].filter |$elt| { $elt }
+    $pri_ipv4 = [ $primary_ipv4[0] ].filter |$elt| { $elt }
   }
   else {
     $loopback_ipv4 = $lo_ipv4.sort
     $pri_ipv4 = $primary_ipv4.sort
   }
   if $one_primary_ipv6 {
-    $loopback_ipv6 = [ $lo_ipv6[0] ]
-    $pri_ipv6 = [ $primary_ipv6[0] ]
+    $loopback_ipv6 = [ $lo_ipv6[0] ].filter |$elt| { $elt }
+    $pri_ipv6 = [ $primary_ipv6[0] ].filter |$elt| { $elt }
   }
   else {
     $loopback_ipv6 = $lo_ipv6.sort
