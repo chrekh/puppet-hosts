@@ -24,6 +24,10 @@ describe 'hosts::collect_other' do
                 {
                   address: '2001:db8:abba::2'
                 },
+                {
+                  address: 'fe80::baba:baba:baba:baba',
+                  scope6: 'foo,link,bar',
+                },
               ]
             }
           }

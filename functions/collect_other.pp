@@ -7,7 +7,9 @@ function hosts::collect_other(String $what) >> Array {
       and $facts[networking][interfaces][$if]
       and $facts[networking][interfaces][$if][$what] {
         $facts[networking][interfaces][$if][$what].map |$binding| {
-          $binding[address]
+          unless $binding[scope6] and 'link' in $binding[scope6].split(',') {
+            $binding[address]
+          }
         }
       }
     }
