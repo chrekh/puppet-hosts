@@ -1,0 +1,102 @@
+---
+networking:
+  interfaces:
+    eth0:
+      bindings:
+        - address: 192.168.2.1
+          netmask: 255.255.255.0
+          network: 192.168.2.0
+        - address: 192.168.2.2
+          netmask: 255.255.255.0
+          network: 192.168.2.0
+      bindings6:
+        - address: "2001:db8:abba::1"
+          netmask: "ffff:ffff:ffff:ffff::"
+          network: "2001:db8:abba::"
+          scope6: global
+          flags:
+            - "permanent"
+        - address: "2001:db8:abba::2"
+          netmask: "ffff:ffff:ffff:ffff::"
+          network: "2001:db8:abba::"
+          scope6: global
+          flags:
+            - "permanent"
+        - address: "fe80::baba:baba:baba:baba"
+          netmask: "ffff:ffff:ffff:ffff::"
+          network: "fe80::"
+          scope6: "link"
+          flags:
+            - "permanent"
+    eth1:
+      bindings:
+        - address: 192.168.10.1
+          netmask: 255.255.255.0
+          network: 192.168.10.0
+      bindings6:
+        - address: "2001:db8::42::1"
+          netmask: "ffff:ffff:ffff:ff00::"
+          network: "2001:db8:42::"
+          scope6: global
+          flags:
+            - "permanent"
+        - address: "fe80::88:88"
+          netmask: "ffff:ffff:ffff:ffff::"
+          network: "fe80::"
+          scope6: "link"
+          flags:
+            - "permanent"
+    eth2:
+      bindings:
+        - address: 192.168.11.1
+          netmask: 255.255.255.0
+          network: 192.168.11.0
+        - address: 192.168.11.2
+          netmask: 255.255.255.0
+          network: 192.168.11.0
+      bindings6:
+        - address: "2001:db8:dd:42::1"
+          netmask: "ffff:ffff:ffff:ffff::"
+          network: "2001:db8:dd:42::"
+          scope6: global
+          flags:
+            - "permanent"
+        - address: "fe80::1234:1"
+          netmask: "ffff:ffff:ffff:ffff::"
+          network: "fe80::"
+          scope6: "link"
+          flags:
+            - "permanent"
+    eth3:
+      bindings:
+        - address: 192.168.12.1
+          netmask: 255.255.255.0
+          network: 192.168.12.0
+      bindings6:
+        - address: "fe80::a:a"
+          netmask: "ffff:ffff:ffff:ffff::"
+          network: "fe80::"
+          scope6: "link"
+          flags:
+            - "permanent"
+    lo:
+      bindings:
+        - address: 127.0.0.1
+          netmask: 255.0.0.0
+          network: 127.0.0.0
+        - address: 127.0.0.2
+          netmask: 255.0.0.0
+          network: 127.0.0.0
+      bindings6:
+        - address: "::1"
+          netmask: "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"
+          network: "::1"
+          scope6: host
+          flags:
+            - "permanent"
+        - address: "::2"
+          netmask: "ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff"
+          network: "::2"
+          scope6: compat,global
+          flags:
+            - "permanent"
