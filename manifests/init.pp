@@ -40,26 +40,30 @@ class hosts (
     }
   }
   # Filtering
-  $included_lo_ipv4 = hosts::includefilter($include_ipv4,$lo_ipv4);
-  $included_primary_ipv4 = hosts::includefilter($include_ipv4,$primary_ipv4);
-  $included_lo_ipv6 = hosts::includefilter($include_ipv6,$lo_ipv6);
-  $included_primary_ipv6 = hosts::includefilter($include_ipv6,$primary_ipv6);
+  $filtered_lo_ipv4 = hosts::excludefilter($exclude_ipv4,
+    hosts::includefilter($include_ipv4,$lo_ipv4));
+  $filtered_primary_ipv4 = hosts::excludefilter($exclude_ipv4,
+    hosts::includefilter($include_ipv4,$primary_ipv4));
+  $filtered_lo_ipv6 = hosts::excludefilter($exclude_ipv6,
+    hosts::includefilter($include_ipv6,$lo_ipv6));
+  $filtered_primary_ipv6 = hosts::excludefilter($exclude_ipv6,
+    hosts::includefilter($include_ipv6,$primary_ipv6));
 
   if $one_primary_ipv4 {
-    $loopback_ipv4 = [ $included_lo_ipv4[0] ].filter |$elt| { $elt } - $entries_addrs
-    $pri_ipv4 = [ $included_primary_ipv4[0] ].filter |$elt| { $elt } - $entries_addrs
+    $loopback_ipv4 = [ $filtered_lo_ipv4[0] ].filter |$elt| { $elt } - $entries_addrs
+    $pri_ipv4 = [ $filtered_primary_ipv4[0] ].filter |$elt| { $elt } - $entries_addrs
   }
   else {
-    $loopback_ipv4 = $included_lo_ipv4.sort - $entries_addrs
-    $pri_ipv4 = $included_primary_ipv4.sort - $entries_addrs
+    $loopback_ipv4 = $filtered_lo_ipv4.sort - $entries_addrs
+    $pri_ipv4 = $filtered_primary_ipv4.sort - $entries_addrs
   }
   if $one_primary_ipv6 {
-    $loopback_ipv6 = [ $included_lo_ipv6[0] ].filter |$elt| { $elt } - $entries_addrs
-    $pri_ipv6 = [ $included_primary_ipv6[0] ].filter |$elt| { $elt } - $entries_addrs
+    $loopback_ipv6 = [ $filtered_lo_ipv6[0] ].filter |$elt| { $elt } - $entries_addrs
+    $pri_ipv6 = [ $filtered_primary_ipv6[0] ].filter |$elt| { $elt } - $entries_addrs
   }
   else {
-    $loopback_ipv6 = $included_lo_ipv6.sort - $entries_addrs
-    $pri_ipv6 = $included_primary_ipv6.sort - $entries_addrs
+    $loopback_ipv6 = $filtered_lo_ipv6.sort - $entries_addrs
+    $pri_ipv6 = $filtered_primary_ipv6.sort - $entries_addrs
   }
 
   $entries_output = lookup('hosts::entries', Hash, 'hash', $entries)
