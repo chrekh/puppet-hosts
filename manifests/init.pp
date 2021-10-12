@@ -31,21 +31,29 @@ class hosts (
       $root_group = 'root'
     }
   }
+  $entries_addrs = $entries.keys.map |$entry| {
+    if $entry =~ Hash {
+      $entries[$entry].keys
+    }
+    else {
+      $entry
+    }
+  }
   if $one_primary_ipv4 {
-    $loopback_ipv4 = [ $lo_ipv4[0] ].filter |$elt| { $elt }
-    $pri_ipv4 = [ $primary_ipv4[0] ].filter |$elt| { $elt }
+    $loopback_ipv4 = [ $lo_ipv4[0] ].filter |$elt| { $elt } - $entries_addrs
+    $pri_ipv4 = [ $primary_ipv4[0] ].filter |$elt| { $elt } - $entries_addrs
   }
   else {
-    $loopback_ipv4 = $lo_ipv4.sort
-    $pri_ipv4 = $primary_ipv4.sort
+    $loopback_ipv4 = $lo_ipv4.sort - $entries_addrs
+    $pri_ipv4 = $primary_ipv4.sort - $entries_addrs
   }
   if $one_primary_ipv6 {
-    $loopback_ipv6 = [ $lo_ipv6[0] ].filter |$elt| { $elt }
-    $pri_ipv6 = [ $primary_ipv6[0] ].filter |$elt| { $elt }
+    $loopback_ipv6 = [ $lo_ipv6[0] ].filter |$elt| { $elt } - $entries_addrs
+    $pri_ipv6 = [ $primary_ipv6[0] ].filter |$elt| { $elt } - $entries_addrs
   }
   else {
-    $loopback_ipv6 = $lo_ipv6.sort
-    $pri_ipv6 = $primary_ipv6.sort
+    $loopback_ipv6 = $lo_ipv6.sort - $entries_addrs
+    $pri_ipv6 = $primary_ipv6.sort - $entries_addrs
   }
 
   $entries_output = lookup('hosts::entries', Hash, 'hash', $entries)
