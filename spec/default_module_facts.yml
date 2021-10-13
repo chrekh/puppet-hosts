@@ -1,4 +1,5 @@
 ---
+osfamily: RedHat
 networking:
   interfaces:
     eth0:
