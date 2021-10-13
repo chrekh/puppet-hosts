@@ -3,6 +3,8 @@ osfamily: RedHat
 networking:
   interfaces:
     eth0:
+      ip: 192.168.2.1
+      ip6: "2001:db8:abba::1"
       bindings:
         - address: 192.168.2.1
           netmask: 255.255.255.0
@@ -30,6 +32,8 @@ networking:
           flags:
             - "permanent"
     eth1:
+      ip: 192.168.10.1
+      ip6: "2001:db8::42:1"
       bindings:
         - address: 192.168.10.1
           netmask: 255.255.255.0
@@ -48,6 +52,8 @@ networking:
           flags:
             - "permanent"
     eth2:
+      ip: 192.168.11.1
+      ip6: "2001:db8:dd:42::1"
       bindings:
         - address: 192.168.11.1
           netmask: 255.255.255.0
@@ -69,6 +75,8 @@ networking:
           flags:
             - "permanent"
     eth3:
+      ip: 192.168.12.1
+      ip6: "fe80::a:a"
       bindings:
         - address: 192.168.12.1
           netmask: 255.255.255.0
@@ -81,6 +89,8 @@ networking:
           flags:
             - "permanent"
     lo:
+      ip: 127.0.0.1
+      ip6: "::1"
       bindings:
         - address: 127.0.0.1
           netmask: 255.0.0.0
