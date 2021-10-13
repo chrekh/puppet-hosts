@@ -41,7 +41,7 @@ networking:
           netmask: 255.255.255.0
           network: 192.168.10.0
       bindings6:
-        - address: "2001:db8::42::1"
+        - address: "2001:db8::42:1"
           netmask: "ffff:ffff:ffff:ff00::"
           network: "2001:db8:42::"
           scope6: global
