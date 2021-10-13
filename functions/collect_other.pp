@@ -5,19 +5,27 @@ function hosts::collect_other(Enum['ip','ip6'] $type) >> Array {
     'ip' => 'bindings',
     'ip6' => 'bindings6',
   }
-  if $facts[networking][interfaces] {
-    $addrs = $facts[networking][interfaces].keys.map |$if| {
-      if $if != 'lo'
-      and $facts[networking][interfaces][$if]
-      and $facts[networking][interfaces][$if][$what] {
-        $facts[networking][interfaces][$if][$what].map |$binding| {
-          unless $binding[scope6] and 'link' in $binding[scope6].split(',') {
-            $binding[address]
+  if $facts[networking] {
+    $addrs = if $facts[networking][$type] !~ /^fe80::/ {
+      [ $facts[networking][$type] ]
+    }
+    else {
+      []
+    }
+    + if $facts[networking][interfaces] {
+      $facts[networking][interfaces].keys.map |$if| {
+        if $if != 'lo'
+        and $facts[networking][interfaces][$if]
+        and $facts[networking][interfaces][$if][$what] {
+          $facts[networking][interfaces][$if][$what].map |$binding| {
+            unless $binding[scope6] and 'link' in $binding[scope6].split(',') {
+              $binding[address]
+            }
           }
         }
       }
     }
-    $addrs.flatten.filter |$addr| { $addr }
+    $addrs.flatten.filter |$addr| { $addr }.unique
   }
   else {
     []
