@@ -1,6 +1,10 @@
 # See https://puppet.com/docs/puppet/latest/lang_write_functions_in_puppet.html
 # for more information on native puppet functions.
-function hosts::collect_other(String $what) >> Array {
+function hosts::collect_other(Enum['ip','ip6'] $type) >> Array {
+  $what = $type ? {
+    'ip' => 'bindings',
+    'ip6' => 'bindings6',
+  }
   if $facts[networking][interfaces] {
     $addrs = $facts[networking][interfaces].keys.map |$if| {
       if $if != 'lo'

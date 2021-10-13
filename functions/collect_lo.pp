@@ -1,6 +1,10 @@
 # See https://puppet.com/docs/puppet/latest/lang_write_functions_in_puppet.html
 # for more information on native puppet functions.
-function hosts::collect_lo(String $what) >> Array {
+function hosts::collect_lo(Enum['ip','ip6'] $type) >> Array {
+  $what = $type ? {
+    'ip' => 'bindings',
+    'ip6' => 'bindings6',
+  }
   if $facts[networking][interfaces]
   and $facts[networking][interfaces][lo]
   and $facts[networking][interfaces][lo][$what] {
