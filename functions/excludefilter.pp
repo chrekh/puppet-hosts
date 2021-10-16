@@ -5,10 +5,11 @@ function hosts::excludefilter(Array[String] $regexps, Array[String] $addrs) >> A
     $addrs
   }
   else {
-    $regexps.map |$re| {
+    $excluded = $regexps.map |$re| {
       $addrs.filter |$addr| {
-        $addr !~ $re
+        $addr =~ $re
       }
     }.flatten.unique
+    $addrs - $excluded
   }
 }
