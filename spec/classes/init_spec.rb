@@ -48,4 +48,37 @@ describe 'hosts' do
     it { is_expected.to contain_file('/etc/hosts').with_content(%r{^127[.]0[.]0[.]1\s+localhost$}) }
     it { is_expected.to contain_file('/etc/hosts').without_content(%r{^\S*:}) }
   end
+  context 'With include/exclude filters' do
+    let(:params) do
+      {
+        one_primary_ipv4: false,
+        one_primary_ipv6: false,
+        include_ipv4: [
+          '^127[.]',
+          '^192[.]168[.]2[.]',
+        ],
+        exclude_ipv4: [
+          '^192[.]168[.]2[.]2',
+        ],
+        include_ipv6: [
+          '^::',
+          '^2001:db8:abba:',
+        ],
+        exclude_ipv6: [
+          '^::2',
+          '^2001:db8:abba::2',
+        ],
+      }
+    end
+
+    it { is_expected.to contain_file('/etc/hosts').with_content(%r{^127[.]0[.]0[.]1\s+localhost$}) }
+    it { is_expected.to contain_file('/etc/hosts').with_content(%r{^192[.]168[.]2[.]1\s+}) }
+    it { is_expected.to contain_file('/etc/hosts').without_content(%r{^192[.]168[.]2[.]2\s+}) }
+    it { is_expected.to contain_file('/etc/hosts').without_content(%r{^192[.]168[.]1.[.]1\s+}) }
+    it { is_expected.to contain_file('/etc/hosts').with_content(%r{^::1\s+}) }
+    it { is_expected.to contain_file('/etc/hosts').without_content(%r{^::2\s+}) }
+    it { is_expected.to contain_file('/etc/hosts').with_content(%r{^2001:db8:abba::1\s+}) }
+    it { is_expected.to contain_file('/etc/hosts').without_content(%r{^2001:db8:abba::2\s+}) }
+    it { is_expected.to contain_file('/etc/hosts').without_content(%r{^2001:db8::42:1\s+}) }
+  end
 end
