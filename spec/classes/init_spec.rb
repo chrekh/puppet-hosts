@@ -81,4 +81,32 @@ describe 'hosts' do
     it { is_expected.to contain_file('/etc/hosts').without_content(%r{^2001:db8:abba::2\s+}) }
     it { is_expected.to contain_file('/etc/hosts').without_content(%r{^2001:db8::42:1\s+}) }
   end
+  context 'With some hosts::entries' do
+    let(:params) do
+      {
+        one_primary_ipv4: false,
+        one_primary_ipv6: false,
+        entries: {
+          '::2' => [
+            'localhost2',
+          ],
+          'Foocluster nodes' => {
+            '2001:db8:abba::1' => [
+              'node1.example.org',
+              'node1',
+            ],
+            '2001:db8:abba::2' => [
+              'node2.example.org',
+              'node2',
+            ],
+          },
+        },
+      }
+    end
+
+    it { is_expected.to contain_file('/etc/hosts').with_content(%r{^# Foocluster nodes$}) }
+    it { is_expected.to contain_file('/etc/hosts').with_content(%r{^::2\s+localhost2$}) }
+    it { is_expected.to contain_file('/etc/hosts').with_content(%r{^2001:db8:abba::1\s+node1.example.org node1}) }
+    it { is_expected.to contain_file('/etc/hosts').with_content(%r{^2001:db8:abba::2\s+node2.example.org node2}) }
+  end
 end
