@@ -90,6 +90,9 @@ describe 'hosts' do
           '::2' => [
             'localhost2',
           ],
+          '10.10.10.1' => [
+            'foo.example.org',
+          ],
           'Foocluster nodes' => {
             '2001:db8:abba::1' => [
               'node1.example.org',
@@ -108,5 +111,31 @@ describe 'hosts' do
     it { is_expected.to contain_file('/etc/hosts').with_content(%r{^::2\s+localhost2$}) }
     it { is_expected.to contain_file('/etc/hosts').with_content(%r{^2001:db8:abba::1\s+node1.example.org node1}) }
     it { is_expected.to contain_file('/etc/hosts').with_content(%r{^2001:db8:abba::2\s+node2.example.org node2}) }
+
+    context 'with enable_ipv4=false & enable_ipv6=false' do
+      let(:params) do
+        {
+          enable_ipv4: false,
+          enable_ipv6: false,
+          entries: {
+            '10.10.10.1' => [
+              'foo.example.org',
+            ],
+            '127.0.0.1' => [
+              'localhost',
+            ],
+            '::1' => [
+              'localhost',
+            ]
+          }
+        }
+      end
+
+      it { is_expected.to contain_file('/etc/hosts').with_content(%r{^10.10.10.1\s+foo.example.org}) }
+      it { is_expected.to contain_file('/etc/hosts').with_content(%r{^127[.]0[.]0[.]1\s+localhost$}) }
+      it { is_expected.to contain_file('/etc/hosts').without_content(%r{^192[.]168[.]2[.]1\s+foo.example.org foo$}) }
+      it { is_expected.to contain_file('/etc/hosts').with_content(%r{^::1\s+localhost$}) }
+      it { is_expected.to contain_file('/etc/hosts').without_content(%r{^2001:db8:abba::1\s+foo.example.org foo$}) }
+    end
   end
 end
