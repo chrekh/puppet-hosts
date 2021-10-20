@@ -9,11 +9,6 @@ OS.
 This module unconditionally overwrites your hosts file. You have been
 warned! There are two reasons that this is template-based.
 
-1) Currently the default host type don't allow multiple IP for a
-   hostname (not even a IPv4 and a IPv6).
-
-2) I prefer to manage files with puppet exclusively, or not at all.
-
 ## Usage
 
 ```puppet
