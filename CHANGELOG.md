@@ -1,3 +1,12 @@
+## 4.0.0
+
+Major rewrite
+
+Replaced ruby-code to collect addresses from interfaces with puppet code to
+collect addresses from structured fact networking.
+
+Replaced complex erb template with much simpler epp template.
+
 ## 3.2.0
 
 Added ability to filter the lists of addresses with lists of regexps.
