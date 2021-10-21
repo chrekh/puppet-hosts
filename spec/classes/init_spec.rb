@@ -1,6 +1,5 @@
 require 'spec_helper'
 describe 'hosts' do
-  it { is_expected.to contain_class('hosts') }
   context 'with defaults for all parameters' do
     it { is_expected.to contain_file('/etc/hosts').with_content(%r{^127[.]0[.]0[.]1\s+localhost$}) }
     it { is_expected.to contain_file('/etc/hosts').without_content(%r{^127[.]0[.]0[.]2\s+}) }
@@ -10,6 +9,16 @@ describe 'hosts' do
     it { is_expected.to contain_file('/etc/hosts').without_content(%r{^::2\s+}) }
     it { is_expected.to contain_file('/etc/hosts').with_content(%r{^2001:db8:abba::1\s+foo.example.org foo$}) }
     it { is_expected.to contain_file('/etc/hosts').without_content(%r{^2001:db8::42:1\s+foo.example.org foo$}) }
+  end
+  context 'With invalid IPv4 address' do
+    let(:params) { { lo_ipv4: [ '::1' ], } }
+
+    it { is_expected.to compile.and_raise_error(%r{Evaluation Error}) }
+  end
+  context 'With invalid IPv6 address' do
+    let(:params) { { lo_ipv6: [ '127.0.0.1' ], } }
+
+    it { is_expected.to compile.and_raise_error(%r{Evaluation Error}) }
   end
   context 'With one_primary_x false' do
     let(:params) do
