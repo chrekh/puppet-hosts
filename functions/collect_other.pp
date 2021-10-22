@@ -1,6 +1,8 @@
 # See https://puppet.com/docs/puppet/latest/lang_write_functions_in_puppet.html
 # for more information on native puppet functions.
-function hosts::collect_other(Enum['ip','ip6'] $type) >> Array {
+function hosts::collect_other(Enum['ip','ip6'] $type,
+                              Array[String] $include,
+                              Array[String] $exclude) >> Array {
   $what = $type ? {
     'ip' => 'bindings',
     'ip6' => 'bindings6',
