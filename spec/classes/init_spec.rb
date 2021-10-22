@@ -51,6 +51,20 @@ describe 'hosts' do
     it { is_expected.to contain_file('/etc/hosts').with_content(%r{^192.168.11.1\s+foo.example.org foo$}) }
     it { is_expected.to contain_file('/etc/hosts').with_content(%r{^2001:db8:dd:42::1\s+foo.example.org foo$}) }
   end
+  context 'With exclude_ifs eth' do
+    let(:params) do
+      {
+        one_primary_ipv4: false,
+        one_primary_ipv6: false,
+        exclude_ifs: [ 'eth' ],
+      }
+    end
+
+    it { is_expected.to contain_file('/etc/hosts').without_content(%r{^192[.]168[.]2[.]2\s+foo.example.org foo$}) }
+    it { is_expected.to contain_file('/etc/hosts').without_content(%r{^2001:db8:abba::2\s+foo.example.org foo$}) }
+    it { is_expected.to contain_file('/etc/hosts').without_content(%r{^192.168.11.1\s+foo.example.org foo$}) }
+    it { is_expected.to contain_file('/etc/hosts').without_content(%r{^2001:db8:dd:42::1\s+foo.example.org foo$}) }
+  end
   context 'With enable_ipv4 false' do
     let(:params) do
       {
