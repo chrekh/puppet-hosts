@@ -17,6 +17,8 @@ function hosts::collect_other(Enum['ip','ip6'] $type,
     + if $facts[networking][interfaces] {
       $facts[networking][interfaces].keys.map |$if| {
         if $if != 'lo'
+        and ( $include.empty
+              or $include.any |$re| { $if =~ $re } )
         and $facts[networking][interfaces][$if]
         and $facts[networking][interfaces][$if][$what] {
           $facts[networking][interfaces][$if][$what].map |$binding| {
