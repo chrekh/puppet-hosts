@@ -75,6 +75,23 @@ If false, don't add IPv6 loopback or primary addresses. (IPv6
 addresses from hosts::entries is still added)
 - *Default*: true
 
+include_ifs
+-----------
+A list of regexp. If the list is empty addresses from all interfaces are
+included. If the list is not empty only addresses from interfaces matching any
+of the regexps are included.
+- *Default*: empty
+
+exclude_ifs
+-----------
+A list of regexp. Exclude addresses from interfaces that match any of the
+regexps.
+- *Default*: empty
+
+Note that the regexps in include/exclude_ifs can only iclude or exclude
+addresses from fact networking[interfaces][*], the address in fact
+networking[ip] and networking[ip6] is always included.
+
 include_ipv4
 ------------
 A list of regexp. If the list is empty all IPv4 addresses are included. If the
