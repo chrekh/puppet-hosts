@@ -1,10 +1,10 @@
 # hosts
 
-A template-based module to manage /etc/hosts. The main goal for this
-module is to add entries for localhost and primary address based on
-existing ip-adresses on existing interfaces. Tested by me on Gentoo,
-SLES, RedHat, and OS X. But it should work or any Linux and Unix-like
-OS.
+A template-based module to manage /etc/hosts. The main goal for this module is
+to add entries for localhost and primary address based on existing ip-adresses
+on existing interfaces. as reported by structured fact networking[].  Tested by
+me on Gentoo, SLES, RedHat, and OS X. But it should work or any Linux and
+Unix-like OS.
 
 This module unconditionally overwrites your hosts file. You have been
 warned! There are two reasons that this is template-based.
