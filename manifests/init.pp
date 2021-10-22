@@ -4,20 +4,20 @@
 #
 class hosts (
   Stdlib::Absolutepath $file                             = '/etc/hosts',
-  Array[Stdlib::IP::Address::V4::Nosubnet] $lo_ipv4      = hosts::collect_lo('ip'),
-  Array[Stdlib::IP::Address::V6::Nosubnet] $lo_ipv6      = hosts::collect_lo('ip6'),
-  Array[String] $lo_names                                = [ 'localhost' ],
   Boolean $one_primary_ipv4                              = true,
   Boolean $one_primary_ipv6                              = true,
   Boolean $enable_ipv4                                   = true,
   Boolean $enable_ipv6                                   = true,
-  Array[Stdlib::IP::Address::V4::Nosubnet] $primary_ipv4 = hosts::collect_other('ip'),
-  Array[Stdlib::IP::Address::V6::Nosubnet] $primary_ipv6 = hosts::collect_other('ip6'),
-  Array[String] $primary_names                           = [ $::fqdn, $::hostname ],
   Array[String] $include_ipv4                            = [],
   Array[String] $include_ipv6                            = [],
   Array[String] $exclude_ipv4                            = [],
   Array[String] $exclude_ipv6                            = [],
+  Array[Stdlib::IP::Address::V4::Nosubnet] $lo_ipv4      = hosts::collect_lo('ip'),
+  Array[Stdlib::IP::Address::V6::Nosubnet] $lo_ipv6      = hosts::collect_lo('ip6'),
+  Array[Stdlib::IP::Address::V4::Nosubnet] $primary_ipv4 = hosts::collect_other('ip'),
+  Array[Stdlib::IP::Address::V6::Nosubnet] $primary_ipv6 = hosts::collect_other('ip6'),
+  Array[String] $lo_names                                = [ 'localhost' ],
+  Array[String] $primary_names                           = [ $::fqdn, $::hostname ],
   Hash $entries                                          = {},
 ) {
   case $::osfamily {
