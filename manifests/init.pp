@@ -1,7 +1,59 @@
-# == Class: hosts
+# @summary Manage /etc/hosts
 #
-# Manage /etc/hosts
-#
+# @example With default entries only
+#   include hosts
+# @example With all primary addresses
+#   class { 'hosts':
+#     'one_primary_ipv4' => false,
+#     'one_primary_ipv6' => false,
+#   }
+# @param file
+#   The file to manage.
+# @param one_primary_ipv4
+#   If true, only use the first address from primary_ipv4.
+# @param one_primary_ipv6
+#   If true, only use the first address from primary_ipv6.
+# @param enable_ipv4
+#   If false, don't add IPv4 loopback or primary addresses. (IPv4 addresses
+#   from hosts::entries is still added)
+# @param enable_ipv6
+#   If false, don't add IPv6 loopback or primary addresses. (IPv6 addresses
+#   from hosts::entries is still added)
+# @param include_ipv4
+#   A list of regexp. If the list is empty all IPv4 addresses are included. If
+#   the list is not empty all IPv4 addresses matching any of the regexps are
+#   included.
+# @param include_ipv6
+#   A list of regexp. If the list is empty all IPv6 addresses are included. If
+#   the list is not empty all IPv6 addresses matching any of the regexps are
+#   included.
+# @param exclude_ipv4
+#   A list of regexp. Exclude IPv4 addresses that matches any of the regexps.
+# @param exclude_ipv6
+#   A list of regexp. Exclude IPv6 addresses that matches any of the regexps.
+# @param include_ifs
+#   A list of regexp. If the list is empty addresses from all interfaces are
+#   included. If the list is not empty only addresses from interfaces matching
+#   any of the regexps are included.
+# @param exclude_ifs
+#   A list of regexp. Exclude addresses from interfaces that match any of the
+#   regexps.
+# @param lo_ipv4
+#   List of IPv4 addresses for localhost. Empty list means no entry.
+# @param lo_ipv6
+#   List of IPv6 addresses for localhost. Empty list means no entry.
+# @param primary_ipv4
+#   List of IPv4 addresses. Empty list means no entry.
+# @param primary_ipv6
+#   List of IPv6 addresses. Empty list means no entry.
+# @param lo_names
+#   List of names for localhost.
+# @param primary_names
+#   List of names for primary addresses.
+# @param entries
+#   A hash with additional host entries to add. Entries in this hash overrides
+#   automatic hostentries for IP's on local interfaces.  The content can be
+#   either comment => { ip => [ names ], ... } or just ip => [ names ].
 class hosts (
   Stdlib::Absolutepath $file                             = '/etc/hosts',
   Boolean $one_primary_ipv4                              = true,

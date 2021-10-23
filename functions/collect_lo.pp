@@ -1,5 +1,9 @@
-# See https://puppet.com/docs/puppet/latest/lang_write_functions_in_puppet.html
-# for more information on native puppet functions.
+# Collect addresses on the loopback interface from fact networking.
+# @api private
+# @param type
+#  IP protocol version to collect addresses for.
+# @return
+#  List of addresses on the loopback interface.
 function hosts::collect_lo(Enum['ip','ip6'] $type) >> Array {
   $what = $type ? {
     'ip' => 'bindings',

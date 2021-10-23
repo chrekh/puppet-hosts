@@ -1,5 +1,13 @@
-# See https://puppet.com/docs/puppet/latest/lang_write_functions_in_puppet.html
-# for more information on native puppet functions.
+# Collect addresses from all interfaces except loopback from fact networking.
+# @api private
+# @param type
+#  IP protocol version to collect addresses for.
+# @param include
+#  List of regexp for interfaces to include addresses from.
+# @param exclude
+#  List of regexp for interfaces to exclude addresses from.
+# @return
+#  List of addresses on the loopback interface
 function hosts::collect_other(Enum['ip','ip6'] $type,
                               Array[String] $include,
                               Array[String] $exclude) >> Array {
