@@ -7,6 +7,8 @@ collect addresses from structured fact networking.
 
 Replaced complex erb template with much simpler epp template.
 
+Added parameters exclude_ifs and include_ifs
+
 ## 3.2.0
 
 Added ability to filter the lists of addresses with lists of regexps.
