@@ -17,7 +17,7 @@ function hosts::collect_lo(Enum['ip','ip6'] $type) >> Array {
         $binding[address]
       }
     }
-    $addrs.flatten.filter |$addr| { $addr }.unique
+    $addrs.flatten.filter |$addr| { $addr != undef and $addr != ''}.unique
   }
   else {
     $addrs = []

@@ -51,7 +51,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 6.18.0"
+      "version_requirement": ">= 5.5.0"
     }
   ],
   "tags": [

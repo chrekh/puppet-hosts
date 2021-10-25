@@ -39,7 +39,7 @@ function hosts::collect_other(Enum['ip','ip6'] $type,
         }
       }
     }
-    $addrs.flatten.filter |$addr| { $addr }.unique
+    $addrs.flatten.filter |$addr| { $addr != undef and $addr != '' }.unique
   }
   else {
     []

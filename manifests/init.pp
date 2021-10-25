@@ -104,16 +104,16 @@ class hosts (
     hosts::includefilter($include_ipv6,$primary_ipv6));
 
   if $one_primary_ipv4 {
-    $loopback_ipv4 = [ $filtered_lo_ipv4[0] ].filter |$elt| { $elt } - $entries_addrs
-    $pri_ipv4 = [ $filtered_primary_ipv4[0] ].filter |$elt| { $elt } - $entries_addrs
+    $loopback_ipv4 = [ $filtered_lo_ipv4[0] ].filter |$elt| { $elt != undef and $elt != '' } - $entries_addrs
+    $pri_ipv4 = [ $filtered_primary_ipv4[0] ].filter |$elt| { $elt != undef and $elt != '' } - $entries_addrs
   }
   else {
     $loopback_ipv4 = $filtered_lo_ipv4.sort - $entries_addrs
     $pri_ipv4 = $filtered_primary_ipv4.sort - $entries_addrs
   }
   if $one_primary_ipv6 {
-    $loopback_ipv6 = [ $filtered_lo_ipv6[0] ].filter |$elt| { $elt } - $entries_addrs
-    $pri_ipv6 = [ $filtered_primary_ipv6[0] ].filter |$elt| { $elt } - $entries_addrs
+    $loopback_ipv6 = [ $filtered_lo_ipv6[0] ].filter |$elt| { $elt != undef and $elt != '' } - $entries_addrs
+    $pri_ipv6 = [ $filtered_primary_ipv6[0] ].filter |$elt| { $elt != undef and $elt != '' } - $entries_addrs
   }
   else {
     $loopback_ipv6 = $filtered_lo_ipv6.sort - $entries_addrs
