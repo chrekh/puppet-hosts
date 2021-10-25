@@ -1,3 +1,7 @@
+## 4.0.1
+
+puppet-5.5 compatibility
+
 ## 4.0.0
 
 Major rewrite
