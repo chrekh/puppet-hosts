@@ -1,3 +1,7 @@
+## 4.0.2
+
+Fix bug if IPv6 is disabled.
+
 ## 4.0.1
 
 puppet-5.5 compatibility
