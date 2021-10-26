@@ -15,7 +15,7 @@ function hosts::collect_other(Enum['ip','ip6'] $type,
     'ip' => 'bindings',
     'ip6' => 'bindings6',
   }
-  if $facts[networking] {
+  if $facts[networking] and $facts[networking][$type] {
     $addrs = if $facts[networking][$type] !~ /^fe80::/ {
       [ $facts[networking][$type] ]
     }
