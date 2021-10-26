@@ -20,6 +20,28 @@ describe 'hosts' do
 
     it { is_expected.to compile.and_raise_error(%r{Evaluation Error}) }
   end
+  context 'Without IPv6' do
+    let(:facts) do
+      {
+        networking: {
+          interfaces: {
+            lo: {
+              bindings: [
+                {
+                  address: '127.0.0.1',
+                },
+              ],
+              ip: '127.0.0.1',
+            },
+          },
+          ip: '192.168.2.1',
+        },
+      }
+    end
+
+    it { is_expected.to compile }
+  end
+
   context 'With one_primary_x false' do
     let(:params) do
       {
