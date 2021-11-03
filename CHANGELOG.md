@@ -1,3 +1,11 @@
+## 3.2.1
+
+Replace hiera_hash with lookup function (#21)
+
+Don't sort addresses if one_primary_ipx is true.
+
+Avoid creating arrays with the value Undef in
+
 ## 3.2.0
 
 Added ability to filter the lists of addresses with lists of regexps.
