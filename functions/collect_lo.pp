@@ -16,7 +16,9 @@ function hosts::collect_lo(Enum['ip','ip6'] $type,String $if) >> Array {
     $addrs = [ $facts[networking][interfaces][$if][$type] ]
     + if $facts[networking][interfaces][$if][$what] {
       $facts[networking][interfaces][$if][$what].map |$binding| {
-        $binding[address]
+        unless $binding[scope6] and 'link' in $binding[scope6].split(',') {
+          $binding[address]
+        }
       }
     }
     $addrs.flatten.filter |$addr| { $addr != undef and $addr != ''}.unique
