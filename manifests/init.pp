@@ -38,6 +38,8 @@
 # @param exclude_ifs
 #   A list of regexp. Exclude addresses from interfaces that match any of the
 #   regexps.
+# @param loopback_if
+#   The name of the loopback interface.
 # @param lo_ipv4
 #   List of IPv4 addresses for localhost. Empty list means no entry.
 # @param lo_ipv6
@@ -66,10 +68,13 @@ class hosts (
   Array[String] $exclude_ipv6                            = [],
   Array[String] $include_ifs                             = [],
   Array[String] $exclude_ifs                             = [],
-  Array[Stdlib::IP::Address::V4::Nosubnet] $lo_ipv4      = hosts::collect_lo('ip'),
-  Array[Stdlib::IP::Address::V6::Nosubnet] $lo_ipv6      = hosts::collect_lo('ip6'),
-  Array[Stdlib::IP::Address::V4::Nosubnet] $primary_ipv4 = hosts::collect_other('ip',$include_ifs,$exclude_ifs),
-  Array[Stdlib::IP::Address::V6::Nosubnet] $primary_ipv6 = hosts::collect_other('ip6',$include_ifs,$exclude_ifs),
+  String $loopback_if                                    = 'lo',
+  Array[Stdlib::IP::Address::V4::Nosubnet] $lo_ipv4      = hosts::collect_lo('ip',$loopback_if),
+  Array[Stdlib::IP::Address::V6::Nosubnet] $lo_ipv6      = hosts::collect_lo('ip6',$loopback_if),
+  Array[Stdlib::IP::Address::V4::Nosubnet] $primary_ipv4 = hosts::collect_other('ip',$loopback_if,
+                                                                                $include_ifs,$exclude_ifs),
+  Array[Stdlib::IP::Address::V6::Nosubnet] $primary_ipv6 = hosts::collect_other('ip6',$loopback_if,
+                                                                                $include_ifs,$exclude_ifs),
   Array[String] $lo_names                                = [ 'localhost' ],
   Array[String] $primary_names                           = [ $::fqdn, $::hostname ],
   Hash $entries                                          = {},

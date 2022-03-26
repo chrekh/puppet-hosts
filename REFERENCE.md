@@ -59,6 +59,7 @@ The following parameters are available in the `hosts` class:
 * [`exclude_ipv6`](#exclude_ipv6)
 * [`include_ifs`](#include_ifs)
 * [`exclude_ifs`](#exclude_ifs)
+* [`loopback_if`](#loopback_if)
 * [`lo_ipv4`](#lo_ipv4)
 * [`lo_ipv6`](#lo_ipv6)
 * [`primary_ipv4`](#primary_ipv4)
@@ -164,13 +165,21 @@ regexps.
 
 Default value: `[]`
 
+##### <a name="loopback_if"></a>`loopback_if`
+
+Data type: `String`
+
+The name of the loopback interface.
+
+Default value: `'lo'`
+
 ##### <a name="lo_ipv4"></a>`lo_ipv4`
 
 Data type: `Array[Stdlib::IP::Address::V4::Nosubnet]`
 
 List of IPv4 addresses for localhost. Empty list means no entry.
 
-Default value: `hosts::collect_lo('ip')`
+Default value: `hosts::collect_lo('ip',$loopback_if)`
 
 ##### <a name="lo_ipv6"></a>`lo_ipv6`
 
@@ -178,7 +187,7 @@ Data type: `Array[Stdlib::IP::Address::V6::Nosubnet]`
 
 List of IPv6 addresses for localhost. Empty list means no entry.
 
-Default value: `hosts::collect_lo('ip6')`
+Default value: `hosts::collect_lo('ip6',$loopback_if)`
 
 ##### <a name="primary_ipv4"></a>`primary_ipv4`
 
@@ -186,7 +195,8 @@ Data type: `Array[Stdlib::IP::Address::V4::Nosubnet]`
 
 List of IPv4 addresses. Empty list means no entry.
 
-Default value: `hosts::collect_other('ip',$include_ifs,$exclude_ifs)`
+Default value: `hosts::collect_other('ip',$loopback_if,
+                                                                                $include_ifs,$exclude_ifs)`
 
 ##### <a name="primary_ipv6"></a>`primary_ipv6`
 
@@ -194,7 +204,8 @@ Data type: `Array[Stdlib::IP::Address::V6::Nosubnet]`
 
 List of IPv6 addresses. Empty list means no entry.
 
-Default value: `hosts::collect_other('ip6',$include_ifs,$exclude_ifs)`
+Default value: `hosts::collect_other('ip6',$loopback_if,
+                                                                                $include_ifs,$exclude_ifs)`
 
 ##### <a name="lo_names"></a>`lo_names`
 

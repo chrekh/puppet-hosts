@@ -2,6 +2,8 @@
 # @api private
 # @param type
 #  IP protocol version to collect addresses for.
+# @param lo_if
+#  The name of the loopback interface.
 # @param include
 #  List of regexp for interfaces to include addresses from.
 # @param exclude
@@ -9,6 +11,7 @@
 # @return
 #  List of addresses on the loopback interface
 function hosts::collect_other(Enum['ip','ip6'] $type,
+                              String $lo_if,
                               Array[String] $include,
                               Array[String] $exclude) >> Array {
   $what = $type ? {
@@ -24,7 +27,7 @@ function hosts::collect_other(Enum['ip','ip6'] $type,
     }
     + if $facts[networking][interfaces] {
       $facts[networking][interfaces].keys.map |$if| {
-        if $if != 'lo'
+        if $if != $lo_if
         and ( $include.empty
               or $include.any |$re| { $if =~ $re } )
         and ( $exclude.empty
