@@ -1,3 +1,8 @@
+## 4.0.3
+### Mar 26, 2022
+
+* Use 'lo0' as default loopback interface on FreeBSD.
+
 ## 4.0.2
 ### Oct 26, 2021
 

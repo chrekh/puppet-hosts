@@ -6,7 +6,7 @@ on existing interfaces. as reported by structured fact networking[].  Tested by
 me on Gentoo, SLES, RedHat, and OS X. But it should work or any Linux and
 Unix-like OS.
 
-This module unconditionally overwrites your hosts file. You have been warned!
+This module unconditionally overwrites your hosts file.
 
 ## Usage
 
