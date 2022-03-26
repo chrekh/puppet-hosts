@@ -1,0 +1,2 @@
+---
+hosts::loopback_if: lo0
