@@ -1,3 +1,4 @@
 ---
 hosts::loopback_if: lo0
 hosts::file: /etc/inet/hosts
+hosts::root_group: sys

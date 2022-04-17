@@ -52,6 +52,8 @@
 #   List of names for localhost.
 # @param primary_names
 #   List of names for primary addresses.
+# @param root_group
+#   Group that should own the hosts file.
 # @param entries
 #   A hash with additional host entries to add. Entries in this hash overrides
 #   automatic hostentries for IP's on local interfaces.  The content can be
@@ -77,19 +79,9 @@ class hosts (
                                                                                 $include_ifs,$exclude_ifs),
   Array[String] $lo_names                                = [ 'localhost' ],
   Array[String] $primary_names                           = [ $::fqdn, $::hostname ],
+  Variant[Integer[0],String[1]] $root_group              = 'root',
   Hash $entries                                          = {},
 ) {
-  case $::osfamily {
-    /^(FreeBSD|DragonFly|Darwin)$/: {
-      $root_group = 'wheel'
-    }
-    /^(AIX)$/: {
-      $root_group = 'system'
-    }
-    default: {
-      $root_group = 'root'
-    }
-  }
   $entries_addrs = $entries.keys.map |$entry| {
     if $entry =~ Hash {
       $entries[$entry].keys

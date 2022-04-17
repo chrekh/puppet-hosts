@@ -66,6 +66,7 @@ The following parameters are available in the `hosts` class:
 * [`primary_ipv6`](#primary_ipv6)
 * [`lo_names`](#lo_names)
 * [`primary_names`](#primary_names)
+* [`root_group`](#root_group)
 * [`entries`](#entries)
 
 ##### <a name="file"></a>`file`
@@ -222,6 +223,14 @@ Data type: `Array[String]`
 List of names for primary addresses.
 
 Default value: `[ $::fqdn, $::hostname ]`
+
+##### <a name="root_group"></a>`root_group`
+
+Data type: `Variant[Integer[0],String[1]]`
+
+Group that should own the hosts file.
+
+Default value: `'root'`
 
 ##### <a name="entries"></a>`entries`
 
