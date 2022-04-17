@@ -1,3 +1,9 @@
+## 4.0.4
+### Apr 17, 2022
+
+* Make $root_group a parameter with defaults in hiera
+* Add defaults for Solaris
+
 ## 4.0.3
 ### Mar 26, 2022
 
