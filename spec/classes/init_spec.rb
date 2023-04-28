@@ -24,6 +24,8 @@ describe 'hosts' do
     let(:facts) do
       {
         networking: {
+          fqdn: 'foo.example.org',
+          hostname: 'foo',
           interfaces: {
             lo: {
               bindings: [

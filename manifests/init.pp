@@ -78,7 +78,8 @@ class hosts (
   Array[Stdlib::IP::Address::V6::Nosubnet] $primary_ipv6 = hosts::collect_other('ip6',$loopback_if,
                                                                                 $include_ifs,$exclude_ifs),
   Array[String] $lo_names                                = [ 'localhost' ],
-  Array[String] $primary_names                           = [ $::fqdn, $::hostname ],
+  Array[String] $primary_names                           = [$facts['networking']['fqdn'],
+                                                            $facts['networking']['hostname']],
   Variant[Integer[0],String[1]] $root_group              = 'root',
   Hash $entries                                          = {},
 ) {

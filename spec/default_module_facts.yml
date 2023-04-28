@@ -1,8 +1,9 @@
 ---
-osfamily: RedHat
-hostname: foo
-fqdn: foo.example.org
+os:
+  family: RedHat
 networking:
+  fqdn: foo.example.org
+  hostname: foo
   ip: 192.168.2.1
   ip6: "2001:db8:abba::1"
   interfaces:
