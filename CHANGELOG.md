@@ -1,3 +1,8 @@
+## 4.1.0
+### Apr 29, 2023
+
+* Replace remaining references to legacy facts, needed for puppet-8
+
 ## 4.0.4
 ### Apr 17, 2022
 
