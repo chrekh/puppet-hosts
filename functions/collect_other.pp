@@ -11,9 +11,11 @@
 # @return
 #  List of addresses on the loopback interface
 function hosts::collect_other(Enum['ip','ip6'] $type,
+  # lint:ignore:strict_indent
                               String $lo_if,
                               Array[String] $include,
                               Array[String] $exclude) >> Array {
+  # lint:endignore
   $what = $type ? {
     'ip' => 'bindings',
     'ip6' => 'bindings6',
@@ -27,6 +29,7 @@ function hosts::collect_other(Enum['ip','ip6'] $type,
     }
     + if $facts[networking][interfaces] {
       $facts[networking][interfaces].keys.map |$if| {
+        # lint:ignore:strict_indent
         if $if != $lo_if
         and ( $include.empty
               or $include.any |$re| { $if =~ $re } )
@@ -40,6 +43,7 @@ function hosts::collect_other(Enum['ip','ip6'] $type,
             }
           }
         }
+        # lint:endignore
       }
     }
     $addrs.flatten.filter |$addr| { $addr != undef and $addr != '' }.unique

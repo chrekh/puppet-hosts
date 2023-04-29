@@ -59,6 +59,7 @@
 #   automatic hostentries for IP's on local interfaces.  The content can be
 #   either comment => { ip => [ names ], ... } or just ip => [ names ].
 class hosts (
+  # lint:ignore:strict_indent
   Stdlib::Absolutepath $file                             = '/etc/hosts',
   Boolean $one_primary_ipv4                              = true,
   Boolean $one_primary_ipv6                              = true,
@@ -82,6 +83,7 @@ class hosts (
                                                             $facts['networking']['hostname']],
   Variant[Integer[0],String[1]] $root_group              = 'root',
   Hash $entries                                          = {},
+  # lint:endignore
 ) {
   $entries_addrs = $entries.keys.map |$entry| {
     if $entry =~ Hash {
@@ -92,14 +94,16 @@ class hosts (
     }
   }
   # Filtering
+  # lint:ignore:strict_indent lint:ignore:2sp_soft_tabs
   $filtered_lo_ipv4 = hosts::excludefilter($exclude_ipv4,
-    hosts::includefilter($include_ipv4,$lo_ipv4));
+                                           hosts::includefilter($include_ipv4,$lo_ipv4));
   $filtered_primary_ipv4 = hosts::excludefilter($exclude_ipv4,
-    hosts::includefilter($include_ipv4,$primary_ipv4));
+                                                hosts::includefilter($include_ipv4,$primary_ipv4));
   $filtered_lo_ipv6 = hosts::excludefilter($exclude_ipv6,
-    hosts::includefilter($include_ipv6,$lo_ipv6));
+                                           hosts::includefilter($include_ipv6,$lo_ipv6));
   $filtered_primary_ipv6 = hosts::excludefilter($exclude_ipv6,
-    hosts::includefilter($include_ipv6,$primary_ipv6));
+                                                hosts::includefilter($include_ipv6,$primary_ipv6));
+  # lint:endignore
 
   if $one_primary_ipv4 {
     $loopback_ipv4 = [ $filtered_lo_ipv4[0] ].filter |$elt| { $elt != undef and $elt != '' } - $entries_addrs
