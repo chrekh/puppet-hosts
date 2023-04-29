@@ -22,7 +22,7 @@ function hosts::collect_other(Enum['ip','ip6'] $type,
   }
   if $facts[networking] and $facts[networking][$type] {
     $addrs = if $facts[networking][$type] !~ /^fe80::/ {
-      [ $facts[networking][$type] ]
+      [$facts[networking][$type]]
     }
     else {
       []
@@ -32,9 +32,9 @@ function hosts::collect_other(Enum['ip','ip6'] $type,
         # lint:ignore:strict_indent
         if $if != $lo_if
         and ( $include.empty
-              or $include.any |$re| { $if =~ $re } )
+              or $include.any |$re| { $if =~ $re })
         and ( $exclude.empty
-              or $exclude.all |$re| { $if !~ $re } )
+              or $exclude.all |$re| { $if !~ $re })
         and $facts[networking][interfaces][$if]
         and $facts[networking][interfaces][$if][$what] {
           $facts[networking][interfaces][$if][$what].map |$binding| {

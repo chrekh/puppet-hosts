@@ -78,7 +78,7 @@ class hosts (
                                                                                 $include_ifs,$exclude_ifs),
   Array[Stdlib::IP::Address::V6::Nosubnet] $primary_ipv6 = hosts::collect_other('ip6',$loopback_if,
                                                                                 $include_ifs,$exclude_ifs),
-  Array[String] $lo_names                                = [ 'localhost' ],
+  Array[String] $lo_names                                = ['localhost'],
   Array[String] $primary_names                           = [$facts['networking']['fqdn'],
                                                             $facts['networking']['hostname']],
   Variant[Integer[0],String[1]] $root_group              = 'root',
@@ -106,16 +106,16 @@ class hosts (
   # lint:endignore
 
   if $one_primary_ipv4 {
-    $loopback_ipv4 = [ $filtered_lo_ipv4[0] ].filter |$elt| { $elt != undef and $elt != '' } - $entries_addrs
-    $pri_ipv4 = [ $filtered_primary_ipv4[0] ].filter |$elt| { $elt != undef and $elt != '' } - $entries_addrs
+    $loopback_ipv4 = [$filtered_lo_ipv4[0]].filter |$elt| { $elt != undef and $elt != '' } - $entries_addrs
+    $pri_ipv4 = [$filtered_primary_ipv4[0]].filter |$elt| { $elt != undef and $elt != '' } - $entries_addrs
   }
   else {
     $loopback_ipv4 = $filtered_lo_ipv4.sort - $entries_addrs
     $pri_ipv4 = $filtered_primary_ipv4.sort - $entries_addrs
   }
   if $one_primary_ipv6 {
-    $loopback_ipv6 = [ $filtered_lo_ipv6[0] ].filter |$elt| { $elt != undef and $elt != '' } - $entries_addrs
-    $pri_ipv6 = [ $filtered_primary_ipv6[0] ].filter |$elt| { $elt != undef and $elt != '' } - $entries_addrs
+    $loopback_ipv6 = [$filtered_lo_ipv6[0]].filter |$elt| { $elt != undef and $elt != '' } - $entries_addrs
+    $pri_ipv6 = [$filtered_primary_ipv6[0]].filter |$elt| { $elt != undef and $elt != '' } - $entries_addrs
   }
   else {
     $loopback_ipv6 = $filtered_lo_ipv6.sort - $entries_addrs
@@ -126,7 +126,7 @@ class hosts (
   assert_type(Hash, $entries_output)
 
   file { $file:
-    ensure  => present,
+    ensure  => file,
     owner   => 'root',
     group   => $root_group,
     mode    => '0644',
