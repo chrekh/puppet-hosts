@@ -59,7 +59,6 @@
 #   automatic hostentries for IP's on local interfaces.  The content can be
 #   either comment => { ip => [ names ], ... } or just ip => [ names ].
 class hosts (
-  # lint:ignore:strict_indent
   Stdlib::Absolutepath $file                             = '/etc/hosts',
   Boolean $one_primary_ipv4                              = true,
   Boolean $one_primary_ipv6                              = true,
@@ -74,16 +73,12 @@ class hosts (
   String $loopback_if                                    = 'lo',
   Array[Stdlib::IP::Address::V4::Nosubnet] $lo_ipv4      = hosts::collect_lo('ip',$loopback_if),
   Array[Stdlib::IP::Address::V6::Nosubnet] $lo_ipv6      = hosts::collect_lo('ip6',$loopback_if),
-  Array[Stdlib::IP::Address::V4::Nosubnet] $primary_ipv4 = hosts::collect_other('ip',$loopback_if,
-                                                                                $include_ifs,$exclude_ifs),
-  Array[Stdlib::IP::Address::V6::Nosubnet] $primary_ipv6 = hosts::collect_other('ip6',$loopback_if,
-                                                                                $include_ifs,$exclude_ifs),
+  Array[Stdlib::IP::Address::V4::Nosubnet] $primary_ipv4 = hosts::collect_other('ip',$loopback_if, $include_ifs,$exclude_ifs),
+  Array[Stdlib::IP::Address::V6::Nosubnet] $primary_ipv6 = hosts::collect_other('ip6',$loopback_if, $include_ifs,$exclude_ifs),
   Array[String] $lo_names                                = ['localhost'],
-  Array[String] $primary_names                           = [$facts['networking']['fqdn'],
-                                                            $facts['networking']['hostname']],
+  Array[String] $primary_names                           = [$facts['networking']['fqdn'], $facts['networking']['hostname']],
   Variant[Integer[0],String[1]] $root_group              = 'root',
   Hash $entries                                          = {},
-  # lint:endignore
 ) {
   $entries_addrs = $entries.keys.map |$entry| {
     if $entry =~ Hash {
@@ -93,17 +88,12 @@ class hosts (
       $entry
     }
   }
+
   # Filtering
-  # lint:ignore:strict_indent lint:ignore:2sp_soft_tabs
-  $filtered_lo_ipv4 = hosts::excludefilter($exclude_ipv4,
-                                           hosts::includefilter($include_ipv4,$lo_ipv4));
-  $filtered_primary_ipv4 = hosts::excludefilter($exclude_ipv4,
-                                                hosts::includefilter($include_ipv4,$primary_ipv4));
-  $filtered_lo_ipv6 = hosts::excludefilter($exclude_ipv6,
-                                           hosts::includefilter($include_ipv6,$lo_ipv6));
-  $filtered_primary_ipv6 = hosts::excludefilter($exclude_ipv6,
-                                                hosts::includefilter($include_ipv6,$primary_ipv6));
-  # lint:endignore
+  $filtered_lo_ipv4      = hosts::excludefilter($exclude_ipv4, hosts::includefilter($include_ipv4,$lo_ipv4))
+  $filtered_primary_ipv4 = hosts::excludefilter($exclude_ipv4, hosts::includefilter($include_ipv4,$primary_ipv4))
+  $filtered_lo_ipv6      = hosts::excludefilter($exclude_ipv6, hosts::includefilter($include_ipv6,$lo_ipv6))
+  $filtered_primary_ipv6 = hosts::excludefilter($exclude_ipv6, hosts::includefilter($include_ipv6,$primary_ipv6))
 
   if $one_primary_ipv4 {
     $loopback_ipv4 = [$filtered_lo_ipv4[0]].filter |$elt| { $elt != undef and $elt != '' } - $entries_addrs
@@ -113,6 +103,7 @@ class hosts (
     $loopback_ipv4 = $filtered_lo_ipv4.sort - $entries_addrs
     $pri_ipv4 = $filtered_primary_ipv4.sort - $entries_addrs
   }
+
   if $one_primary_ipv6 {
     $loopback_ipv6 = [$filtered_lo_ipv6[0]].filter |$elt| { $elt != undef and $elt != '' } - $entries_addrs
     $pri_ipv6 = [$filtered_primary_ipv6[0]].filter |$elt| { $elt != undef and $elt != '' } - $entries_addrs
