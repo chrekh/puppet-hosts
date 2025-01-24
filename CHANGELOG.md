@@ -1,3 +1,8 @@
+## 4.1.1
+### Jan 24, 2025
+
+* Raise stdlib boundary
+
 ## 4.1.0
 ### Apr 29, 2023
 
